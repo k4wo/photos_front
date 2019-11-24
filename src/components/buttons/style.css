@@ -1,0 +1,32 @@
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn svg {
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background: lightblue;
+}
+
+/* BUTTON ICON */
+.btn-icon {
+  display: inline;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.btn-icon:hover {
+  color: burlywood;
+}

@@ -1,0 +1,47 @@
+.mainbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.mainbar .btn,
+.mainbar > * {
+  margin: 0 10px;
+}
+
+.mainbar .search {
+  max-width: 500px;
+}
+
+.mainbar__buttons {
+  display: flex;
+}
+
+.navbar {
+  width: 70px;
+  background: green;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+
+.navbar__link {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-transform: none;
+  padding: 10px;
+  border-radius: 50%;
+  margin: 10px 0;
+}
+
+.navbar__link:hover {
+  background: red;
+}

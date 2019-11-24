@@ -1,0 +1,29 @@
+.search {
+  display: flex;
+  width: 100%;
+  min-width: 160px;
+  background: lightgray;
+  border-radius: 5px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  transition: 1s;
+}
+
+.search .search-icon {
+  padding: 0 10px;
+  color: gray;
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  background: inherit;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search:focus-within {
+  background: white;
+}
