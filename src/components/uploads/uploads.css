@@ -1,0 +1,55 @@
+:root {
+  --uploadWindowWidth: 300px;
+  --uploadWindowHeight: 300px;
+  --uploadWindowColor: #444444;
+}
+
+.upload-window {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  border: 1px solid var(--uploadWindowColor);
+  width: var(--uploadWindowWidth);
+  position: fixed;
+  bottom: calc(var(--uploadWindowHeight) * -1 - 1px); /* height and border */
+  transition: 0.5s;
+}
+
+.upload-window--open {
+  bottom: 0;
+}
+
+.upload-window__title {
+  background-color: var(--uploadWindowColor);
+  color: white;
+  padding: 2px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upload-window .btn-icon {
+  transition: 0.5s;
+  color: white;
+  border-radius: 5px;
+}
+
+.upload-window__body {
+  height: var(--uploadWindowHeight);
+  width: var(--uploadWindowWidth);
+  background: white;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.upload-window__item {
+  padding: 5px 10px;
+  background: aliceblue;
+  margin-bottom: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-window__item .roller div {
+  border-color: green transparent transparent transparent;
+}
