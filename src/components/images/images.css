@@ -21,6 +21,10 @@
   color: black;
 }
 
+.image__selection .btn-icon {
+  border-radius: 100%;
+}
+
 .image:hover .image__selection {
   opacity: 1;
 }

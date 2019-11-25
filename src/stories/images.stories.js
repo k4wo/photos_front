@@ -9,10 +9,10 @@ const url = "https://i.imgur.com/xLzPFj3.jpg";
 
 export const NoImage: React.FunctionComponent = () => <ImageComponent />;
 export const WithImage: React.FunctionComponent = () => (
-  <ImageComponent url={url} />
+  <ImageComponent url={url} width={344} height={167} />
 );
 export const SelectedImage: React.FunctionComponent = () => (
-  <ImageComponent isSelected url={url} />
+  <ImageComponent isSelected url={url} width={344} height={167} />
 );
 
 export const Album: React.FunctionComponent = () => (

@@ -11,7 +11,10 @@ interface AlbumProps {
   name: string;
 }
 
-const Album: React.FunctionComponent<AlbumProps> = ({ url, name }) => {
+const Album: React.FunctionComponent<AlbumProps> = ({
+  url,
+  name
+}: AlbumProps) => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
   const albumMenuRef = useRef<HTMLDivElement>(null);
 

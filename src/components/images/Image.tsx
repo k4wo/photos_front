@@ -6,9 +6,13 @@ import { faCheckCircle as selectedIcon } from "@fortawesome/free-solid-svg-icons
 import "./images.css";
 import ButtonIcon from "../buttons/ButtonIcon";
 
+import { computeWidth } from "../../helpers/computeDimension";
+
 interface ImageProps {
-  url: string;
+  url?: string;
   isSelected: boolean;
+  width?: number;
+  height?: number;
   onSelect: () => void;
   handleClick: () => void;
 }
@@ -17,17 +21,20 @@ const Image: React.FunctionComponent<ImageProps> = ({
   isSelected,
   onSelect,
   handleClick,
-  url
-}) => {
+  url,
+  width,
+  height
+}: ImageProps) => {
   const selectionClass = cn(
     "image__selection",
     isSelected && "image__selection--selected"
   );
+  const w = !width || !height ? "" : computeWidth(width, height, 200);
 
   return (
     <div
       className="image"
-      style={{ backgroundImage: `url(${url})` }}
+      style={{ backgroundImage: `url(${url})`, width: w }}
       onClick={handleClick}
     >
       <div className={selectionClass}>
@@ -38,6 +45,10 @@ const Image: React.FunctionComponent<ImageProps> = ({
       </div>
     </div>
   );
+};
+
+Image.defaultProps = {
+  url: ""
 };
 
 export default Image;
