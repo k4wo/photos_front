@@ -1,7 +1,7 @@
 import React from "react";
 
-import MHeader from "../components/headers/Mainbar";
-import MHNavbar from "../components/headers/Navbar";
+import MHeader from "../src/components/headers/Mainbar";
+import MHNavbar from "../src/components/headers/Navbar";
 
 export default { title: "Headers" };
 

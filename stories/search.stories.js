@@ -1,6 +1,6 @@
 import React from "react";
 
-import SearchComponent from "../components/Inputs/Search";
+import SearchComponent from "../src/components/Inputs/Search";
 
 export default { title: "Inputs" };
 

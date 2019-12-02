@@ -1,7 +1,7 @@
 import React from "react";
 
-import ImageComponent from "../components/images/Image";
-import AlbumComponent from "../components/images/Album";
+import ImageComponent from "../src/components/images/Image";
+import AlbumComponent from "../src/components/images/Album";
 
 export default { title: "Images" };
 

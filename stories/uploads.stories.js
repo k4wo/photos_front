@@ -1,6 +1,6 @@
 import React from "react";
 
-import UploadWindowComponent from "../components/uploads/UploadWindow";
+import UploadWindowComponent from "../src/components/uploads/UploadWindow";
 
 export default { title: "Uploads" };
 

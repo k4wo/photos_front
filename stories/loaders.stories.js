@@ -1,6 +1,6 @@
 import React from "react";
 
-import RollerComponent from "../components/loaders/Roller";
+import RollerComponent from "../src/components/loaders/Roller";
 
 export default { title: "Loaders" };
 
