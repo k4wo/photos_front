@@ -21,7 +21,7 @@ const Photos: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <div className="photos">
+    <div id="main-content" className="photos">
       {photos.map(photo => (
         <Image
           key={photo.hash}

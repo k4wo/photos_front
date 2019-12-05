@@ -2,14 +2,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: var(--topBarHeight);
   padding: 5px 10px;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
 }
 
 .mainbar .btn,
 .mainbar > * {
   margin: 0 10px;
+}
+
+.mainbar__menu {
+  margin-left: 22px;
 }
 
 .mainbar .search {
@@ -20,15 +28,21 @@
   display: flex;
 }
 
+.mainbar__buttons .btn {
+  color: var(--blue);
+}
+
 .navbar {
-  width: 70px;
-  background: green;
-  height: 100vh;
+  width: var(--leftBarWidth);
+  background: #fff;
+  height: calc(100vh - var(--topBarHeight));
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  padding-top: 50px;
+  top: var(--topBarHeight);
+  padding-top: 40px;
   box-sizing: border-box;
+  position: fixed;
 }
 
 .navbar__link {
@@ -36,12 +50,21 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  text-transform: none;
   padding: 10px;
-  border-radius: 50%;
+  border-radius: 5px;
   margin: 10px 0;
+  transition: 0.2s;
+}
+
+.navbar__text {
+  font-size: 14px;
 }
 
 .navbar__link:hover {
-  background: red;
+  background: var(--lightgray);
+}
+
+.navbar__link--active svg,
+.navbar__link--active {
+  color: var(--blue);
 }

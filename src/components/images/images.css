@@ -3,7 +3,7 @@
 }
 
 .image {
-  background-color: lightgray;
+  background-color: var(--gray);
   height: 200px;
   min-width: 20px;
   position: relative;
@@ -41,7 +41,7 @@
 .album__cover {
   width: var(--album-width);
   height: 200px;
-  border: 1px solid lightgray;
+  border: 1px solid var(--gray);
   border-radius: 10px;
   position: relative;
   background-repeat: no-repeat;

@@ -20,7 +20,7 @@ const Mainbar: React.FunctionComponent = () => {
 
   return (
     <div className="mainbar">
-      <div>
+      <div className="mainbar__menu">
         <FontAwesomeIcon icon={menuIcon} size="lg" />
       </div>
       <Search

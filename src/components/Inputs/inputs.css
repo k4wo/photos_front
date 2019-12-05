@@ -2,17 +2,17 @@
   display: flex;
   width: 100%;
   min-width: 160px;
-  background: lightgray;
+  background: var(--gray);
   border-radius: 5px;
   padding: 5px 0;
   box-sizing: border-box;
-  border: 1px solid lightgray;
+  border: 1px solid var(--gray);
   transition: 1s;
 }
 
 .search .search-icon {
   padding: 0 10px;
-  color: gray;
+  color: var(--darkgray);
 }
 
 .search input {
