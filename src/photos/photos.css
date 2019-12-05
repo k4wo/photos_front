@@ -1,0 +1,8 @@
+.photos {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.photos > .image {
+  margin: 10px 5px;
+}

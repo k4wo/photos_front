@@ -10,7 +10,7 @@ import { computeWidth } from "../../helpers/computeDimension";
 
 interface ImageProps {
   url?: string;
-  isSelected: boolean;
+  isSelected?: boolean;
   width?: number;
   height?: number;
   onSelect: () => void;
