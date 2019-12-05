@@ -7,12 +7,14 @@ import reduxThunk from "redux-thunk";
 
 import "./index.css";
 import App from "./App";
-import Photos from "./photos";
 import * as serviceWorker from "./serviceWorker";
 import reducers from "./redux/reducers";
 
 const composeEnhancers =
-  (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+  process.env.NODE_ENV === "development"
+    ? (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+      compose
+    : compose;
 const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(reduxThunk))
@@ -20,7 +22,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Photos />
+    <App />
   </Provider>,
   document.getElementById("root")
 );
