@@ -15,7 +15,7 @@ const Search: React.FunctionComponent<SearchProps> = ({
   value,
   onSearch
 }) => (
-  <div className="search">
+  <label className="search">
     <div className="search-icon">
       <FontAwesomeIcon icon={searchIcon} size="lg" />
     </div>
@@ -25,7 +25,7 @@ const Search: React.FunctionComponent<SearchProps> = ({
       onChange={onSearch}
       placeholder={placeholder}
     />
-  </div>
+  </label>
 );
 
 Search.defaultProps = {
