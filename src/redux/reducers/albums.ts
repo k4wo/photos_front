@@ -1,7 +1,7 @@
 import { Reducer } from "redux";
 
 import types from "../types";
-import { BasicReducer, BasicReduxAction } from "../../constants/interfaces";
+import { BasicReducer, BasicReduxAction } from "../../types/redux";
 
 const initialValues = {
   isPending: false,

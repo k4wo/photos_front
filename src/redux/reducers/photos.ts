@@ -1,7 +1,7 @@
 import { Reducer } from "redux";
 
 import types from "../types";
-import { ReduxPhotoState, BasicReduxAction } from "../../constants/interfaces";
+import { PhotosState, BasicReduxAction } from "../../types/redux";
 
 const initialValues = {
   isPending: false,
@@ -9,10 +9,10 @@ const initialValues = {
   data: []
 };
 
-const photos: Reducer<ReduxPhotoState, BasicReduxAction> = (
-  state: ReduxPhotoState = initialValues,
+const photos: Reducer<PhotosState, BasicReduxAction> = (
+  state: PhotosState = initialValues,
   action: BasicReduxAction
-): ReduxPhotoState => {
+): PhotosState => {
   switch (action.type) {
     case types.FETCH_PHOTOS:
       return { ...state, isPending: true };

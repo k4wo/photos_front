@@ -1,12 +1,8 @@
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 
-import {
-  Photo,
-  BasicReduxAction,
-  ErrorActionType,
-  ReduxState
-} from "../constants/interfaces";
+import { Photo } from "../types/interfaces";
+import { BasicReduxAction, ErrorActionType, ReduxState } from "../types/redux";
 import types from "./types";
 
 const URL = process.env.REACT_APP_API_URL;

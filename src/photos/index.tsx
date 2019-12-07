@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchPhotos } from "../redux/actions";
-import { ReduxState, Photo as PhotoInterface } from "../constants/interfaces";
+import { ReduxState } from "../types/redux";
+import { Photo as PhotoInterface } from "../types/interfaces";
 
 import "./photos.css";
 import Image from "../components/images/Image";

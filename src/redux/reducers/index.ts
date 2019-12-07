@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import { BasicReduxAction, ReduxState } from "../../constants/interfaces";
+import { ReduxState } from "../../types/redux";
 
 import photos from "./photos";
 import albums from "./albums";
+import upload from "./upload";
 
-export default combineReducers<ReduxState, BasicReduxAction>({
+export default combineReducers<ReduxState, any>({
   albums,
-  photos
+  photos,
+  upload
 });
