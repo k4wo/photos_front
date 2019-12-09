@@ -18,11 +18,3 @@ export interface Photo {
   size: number;
   owner: number;
 }
-export interface File {
-  lastModified: number;
-  lastModifiedDate: Date;
-  name: string;
-  size: number;
-  type: string;
-  webkitRelativePath: string;
-}

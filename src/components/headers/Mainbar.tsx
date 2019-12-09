@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars as menuIcon } from "@fortawesome/free-solid-svg-icons/faBars";
 import { faPlus as createIcon } from "@fortawesome/free-solid-svg-icons/faPlus";
@@ -14,7 +14,14 @@ const LABELS = {
   upload: "Upload"
 };
 
-const Mainbar: React.FunctionComponent = () => {
+interface MainbarProps {
+  onFileSelect: (files: FileList) => void;
+}
+
+const Mainbar: React.FunctionComponent<MainbarProps> = ({
+  onFileSelect
+}: MainbarProps) => {
+  const inputFile = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [isCreateModalActive, setIsCreateModalActive] = useState(false);
 
@@ -24,7 +31,7 @@ const Mainbar: React.FunctionComponent = () => {
         <FontAwesomeIcon icon={menuIcon} size="lg" />
       </div>
       <Search
-        onSearch={(e: React.ChangeEvent<HTMLInputElement>): void =>
+        onSearch={(e: ChangeEvent<HTMLInputElement>): void =>
           setSearch(e.target.value)
         }
         value={search}
@@ -34,9 +41,27 @@ const Mainbar: React.FunctionComponent = () => {
           <FontAwesomeIcon icon={createIcon} />
           {LABELS.create}
         </Button>
-        <Button handleClick={(): void => {}}>
+        <Button
+          handleClick={(): void => {
+            if (inputFile.current) {
+              inputFile.current.click();
+            }
+          }}
+        >
           <FontAwesomeIcon icon={uploadIcon} />
           {LABELS.upload}
+          <input
+            ref={inputFile}
+            className="mainbar__input-file"
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={(e: ChangeEvent<HTMLInputElement>): void => {
+              if (e.target.files) {
+                onFileSelect(e.target.files);
+              }
+            }}
+            multiple
+          />
         </Button>
       </span>
     </div>

@@ -1,4 +1,4 @@
-import { Photo, File } from "./interfaces";
+import { Photo } from "./interfaces";
 
 // ACTIONS
 export interface BasicReduxAction {
@@ -8,6 +8,9 @@ export interface BasicReduxAction {
 export interface ErrorActionType extends BasicReduxAction {
   payload: string;
 }
+export interface UploadFileAction extends BasicReduxAction {
+  payload: UploadReducer[];
+}
 
 // REDUCERS
 export interface BasicReducer {
@@ -15,11 +18,10 @@ export interface BasicReducer {
   error: null | string;
   data: Record<string, any>;
 }
-
 export interface UploadReducer {
-  isPending?: boolean;
-  isUploaded?: boolean;
-  file: File;
+  isPending: boolean;
+  isCompleted: boolean;
+  name: string;
 }
 
 // STATES
@@ -27,7 +29,7 @@ export interface PhotosState extends BasicReducer {
   data: Photo[];
 }
 export interface UploadState {
-  files: UploadReducer[];
+  data: UploadReducer[];
 }
 
 export interface ReduxState {

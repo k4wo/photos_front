@@ -6,29 +6,24 @@ import { faWindowMaximize as maximizeIcon } from "@fortawesome/free-regular-svg-
 import { faCheckCircle as completedIcon } from "@fortawesome/free-solid-svg-icons/faCheckCircle";
 
 import "./uploads.css";
+import { UploadReducer } from "../../types/redux";
 import ButtonIcon from "../buttons/ButtonIcon";
 import Roller from "../loaders/Roller";
 
-interface ItemProps {
-  name: string;
-  isLoading: boolean;
-  isComplete: boolean;
-}
-
-const UploadItem: React.FunctionComponent<ItemProps> = ({
+const UploadItem: React.FunctionComponent<UploadReducer> = ({
   name,
-  isLoading,
-  isComplete
-}: ItemProps) => (
+  isPending,
+  isCompleted
+}: UploadReducer) => (
   <div className="upload-window__item">
     <span>{name}</span>
-    {isLoading && <Roller />}
-    {isComplete && <FontAwesomeIcon icon={completedIcon} size="lg" />}
+    {isPending && <Roller />}
+    {isCompleted && <FontAwesomeIcon icon={completedIcon} size="lg" />}
   </div>
 );
 
 interface UploadWindowProps {
-  files: ItemProps[];
+  files: UploadReducer[];
 }
 
 const UploadWindow: React.FunctionComponent<UploadWindowProps> = ({
@@ -48,7 +43,7 @@ const UploadWindow: React.FunctionComponent<UploadWindowProps> = ({
         />
       </div>
       <div className="upload-window__body">
-        {files.map((item: ItemProps, index: number) => (
+        {files.map((item: UploadReducer, index: number) => (
           <UploadItem key={index} {...item} />
         ))}
       </div>
