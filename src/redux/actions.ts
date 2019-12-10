@@ -37,7 +37,13 @@ export const fetchPhotos = async (
     const response = await fetch(`${URL}/images`);
     const photos = await response.json();
 
-    dispatch(setPhotos(photos));
+    dispatch(
+      setPhotos(
+        photos.sort(
+          (a: Photo, b: Photo) => +new Date(b.date) - +new Date(a.date)
+        )
+      )
+    );
   } catch (error) {
     console.log(error);
     dispatch(setPhotosError(error.message));
