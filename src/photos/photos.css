@@ -3,6 +3,6 @@
   flex-flow: row wrap;
 }
 
-.photos > .image {
+.photos > .image_container {
   margin: 10px 5px;
 }

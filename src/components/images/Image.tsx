@@ -17,6 +17,9 @@ interface ImageProps {
   handleClick: () => void;
 }
 
+const HEIGHT = 200;
+const HEIGHT_SELECTED = 180;
+
 const Image: React.FunctionComponent<ImageProps> = ({
   isSelected,
   onSelect,
@@ -25,23 +28,31 @@ const Image: React.FunctionComponent<ImageProps> = ({
   width,
   height
 }: ImageProps) => {
-  const selectionClass = cn(
-    "image__selection",
-    isSelected && "image__selection--selected"
-  );
-  const w = !width || !height ? "" : computeWidth(width, height, 200);
+  const imageClass = cn("image_container", isSelected && "image_container--selected");
+  const selectionClass = cn("image__selection", isSelected && "image__selection--selected");
+  const defaultHeight = isSelected ? HEIGHT_SELECTED : HEIGHT;
+  const containerWidth = !width || !height ? "" : computeWidth(width, height, HEIGHT);
+  const imageWidth = !width || !height ? "" : computeWidth(width, height, defaultHeight);
 
   return (
     <div
-      className="image"
-      style={{ backgroundImage: `url(${url})`, width: w }}
+      className={imageClass}
       onClick={handleClick}
+      style={{
+        width: `${containerWidth}px`
+      }}
     >
+      <div
+        className="image"
+        style={{
+          backgroundImage: `url(${url})`,
+          backgroundSize: `${imageWidth}px ${defaultHeight}px`,
+          width: `${imageWidth}px`,
+          height: `${defaultHeight}px`
+        }}
+      />
       <div className={selectionClass}>
-        <ButtonIcon
-          icon={isSelected ? selectedIcon : selectIcon}
-          handleClick={onSelect}
-        />
+        <ButtonIcon icon={isSelected ? selectedIcon : selectIcon} handleClick={onSelect} />
       </div>
     </div>
   );
