@@ -1,15 +1,3 @@
-:root {
-  --leftBarWidth: 85px;
-  --topBarHeight: 60px;
-
-  --lightgray: #f7f7f7;
-  --gray: #e4e4e4;
-  --darkgray: #7b7b7b;
-
-  --blue: #1a73e8;
-  --lightblue: #e8f0fe;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
