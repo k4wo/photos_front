@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { ThunkAction } from "redux-thunk";
 
-import { fetchPhotos } from "../redux/actions";
-import { ReduxState } from "../types/redux";
+import { fetchPhotos, setViewer } from "../redux/actions";
+import { ReduxState, ViewerAction } from "../types/redux";
 import { Photo as PhotoInterface } from "../types/interfaces";
 
 import "./photos.css";
@@ -23,7 +24,6 @@ const Photos: React.FunctionComponent = () => {
       setSelectedPhotos([...selectedPhotos, index]);
     }
   };
-  const handleClick = (): void => {};
 
   useEffect(() => {
     dispatch(fetchPhotos);
@@ -36,8 +36,8 @@ const Photos: React.FunctionComponent = () => {
           key={photo.hash}
           url={`${URL}/${FILE_PATH}/${photo.hash}_mobile`}
           onSelect={(): void => toggleSelection(index)}
-          handleClick={(): void =>
-            !!selectedPhotos.length ? toggleSelection(index) : handleClick()
+          handleClick={(): void | ThunkAction<void, ReduxState, null, ViewerAction> =>
+            !!selectedPhotos.length ? toggleSelection(index) : dispatch(setViewer(index))
           }
           width={photo.width}
           height={photo.height}

@@ -1,4 +1,4 @@
-import { ThunkDispatch } from "redux-thunk";
+import { ThunkDispatch, ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
 import { Photo } from "../types/interfaces";
@@ -7,7 +7,8 @@ import {
   ErrorActionType,
   ReduxState,
   UploadFileAction,
-  UploadReducer
+  UploadReducer,
+  ViewerAction
 } from "../types/redux";
 import types from "./types";
 
@@ -37,13 +38,7 @@ export const fetchPhotos = async (
     const response = await fetch(`${URL}/images`);
     const photos = await response.json();
 
-    dispatch(
-      setPhotos(
-        photos.sort(
-          (a: Photo, b: Photo) => +new Date(b.date) - +new Date(a.date)
-        )
-      )
-    );
+    dispatch(setPhotos(photos.sort((a: Photo, b: Photo) => +new Date(b.date) - +new Date(a.date))));
   } catch (error) {
     console.log(error);
     dispatch(setPhotosError(error.message));
@@ -57,13 +52,12 @@ export const setUploadFiles = (files: UploadReducer[]): UploadFileAction => {
   };
 };
 
-export const uploadFile = (files: FileList) => async (
+export const uploadFile = (
+  files: FileList
+): ThunkAction<void, ReduxState, null, AnyAction> => async (
   dispatch: ThunkDispatch<ReduxState, {}, AnyAction>
 ): Promise<void> => {
-  const filesName = Array.prototype.map.call(
-    files,
-    (file: File): string => file.name
-  ) as string[];
+  const filesName = Array.prototype.map.call(files, (file: File): string => file.name) as string[];
   const storeFiles = filesName.map(
     (name: string): UploadReducer => ({
       name,
@@ -80,6 +74,7 @@ export const uploadFile = (files: FileList) => async (
       method: "POST",
       body: data
     });
+
     dispatch(
       setUploadFiles(
         storeFiles.map(item => ({
@@ -94,3 +89,18 @@ export const uploadFile = (files: FileList) => async (
     console.log(error);
   }
 };
+
+// VIEWER
+const setViewerAction = (index: number | null): ViewerAction => ({
+  type: types.SET_VIEWER,
+  payload: index
+});
+
+export const setViewer = (
+  photoIndex: number
+): ThunkAction<void, ReduxState, null, ViewerAction> => (
+  dispatch: ThunkDispatch<ReduxState, {}, AnyAction>
+): ViewerAction => dispatch(setViewerAction(photoIndex));
+
+export const closeViewer = (dispatch: ThunkDispatch<ReduxState, {}, AnyAction>): ViewerAction =>
+  dispatch(setViewerAction(null));

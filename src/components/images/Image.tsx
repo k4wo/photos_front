@@ -52,7 +52,13 @@ const Image: React.FunctionComponent<ImageProps> = ({
         }}
       />
       <div className={selectionClass}>
-        <ButtonIcon icon={isSelected ? selectedIcon : selectIcon} handleClick={onSelect} />
+        <ButtonIcon
+          icon={isSelected ? selectedIcon : selectIcon}
+          handleClick={(e): void => {
+            e.stopPropagation();
+            onSelect();
+          }}
+        />
       </div>
     </div>
   );

@@ -11,12 +11,15 @@ export interface ErrorActionType extends BasicReduxAction {
 export interface UploadFileAction extends BasicReduxAction {
   payload: UploadReducer[];
 }
+export interface ViewerAction extends BasicReduxAction {
+  payload: ViewerReducer;
+}
 
 // REDUCERS
 export interface BasicReducer {
   isPending: boolean;
   error: null | string;
-  data: Record<string, any>;
+  data: Record<string, string | number>;
 }
 export interface UploadReducer {
   isPending: boolean;
@@ -24,8 +27,12 @@ export interface UploadReducer {
   name: string;
 }
 
+export type ViewerReducer = number | null;
+
 // STATES
-export interface PhotosState extends BasicReducer {
+export interface PhotosState {
+  isPending: boolean;
+  error: null | string;
   data: Photo[];
 }
 export interface UploadState {
@@ -36,6 +43,7 @@ export interface ReduxState {
   albums: BasicReducer;
   photos: PhotosState;
   upload: UploadState;
+  viewer: ViewerReducer;
 }
 
 export default ReduxState;

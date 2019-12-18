@@ -6,7 +6,7 @@ import "./style.css";
 
 interface ButtonProps {
   icon: IconProp;
-  handleClick: () => void;
+  handleClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   size?: SizeProp;
 }
 
