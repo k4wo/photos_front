@@ -27,7 +27,7 @@ const Photos: React.FunctionComponent = () => {
 
   useEffect(() => {
     dispatch(fetchPhotos);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="main-content" className="photos">

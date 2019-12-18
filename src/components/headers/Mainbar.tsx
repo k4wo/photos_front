@@ -18,9 +18,7 @@ interface MainbarProps {
   onFileSelect: (files: FileList) => void;
 }
 
-const Mainbar: React.FunctionComponent<MainbarProps> = ({
-  onFileSelect
-}: MainbarProps) => {
+const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }: MainbarProps) => {
   const inputFile = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [isCreateModalActive, setIsCreateModalActive] = useState(false);
@@ -31,9 +29,7 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({
         <FontAwesomeIcon icon={menuIcon} size="lg" />
       </div>
       <Search
-        onSearch={(e: ChangeEvent<HTMLInputElement>): void =>
-          setSearch(e.target.value)
-        }
+        onSearch={(e: ChangeEvent<HTMLInputElement>): void => setSearch(e.target.value)}
         value={search}
       />
       <span className="mainbar__buttons">
@@ -41,13 +37,7 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({
           <FontAwesomeIcon icon={createIcon} />
           {LABELS.create}
         </Button>
-        <Button
-          handleClick={(): void => {
-            if (inputFile.current) {
-              inputFile.current.click();
-            }
-          }}
-        >
+        <Button handleClick={(): void => inputFile.current?.click()}>
           <FontAwesomeIcon icon={uploadIcon} />
           {LABELS.upload}
           <input

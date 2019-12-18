@@ -5,7 +5,7 @@ const useOutsideClick = (onOuterClick: () => void, innerRef: any): void => {
   useEffect(
     () => {
       function handleClick(e: MouseEvent): void {
-        if (innerRef.current && !innerRef.current.contains(e.target)) {
+        if (!innerRef.current?.contains(e.target)) {
           onOuterClick();
         }
       }
@@ -16,8 +16,7 @@ const useOutsideClick = (onOuterClick: () => void, innerRef: any): void => {
       }
 
       // unmount previous first in case inputs have changed
-      return (): void =>
-        document.removeEventListener("click", handleClick, true);
+      return (): void => document.removeEventListener("click", handleClick, true);
     },
     [onOuterClick, innerRef] // invoke again, if inputs have changed
   );

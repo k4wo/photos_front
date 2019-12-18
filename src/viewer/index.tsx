@@ -24,11 +24,7 @@ const Viewer: React.FunctionComponent<ViewerProps> = ({ photoIndex }) => {
   const dispatch = useDispatch();
   const boxRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (boxRef.current) {
-      boxRef.current.focus();
-    }
-  });
+  useEffect(() => boxRef.current?.focus());
 
   const photo = photos[photoIndex];
   const url = `${URL}/${FILE_PATH}/${photo.hash}_mobile`;
