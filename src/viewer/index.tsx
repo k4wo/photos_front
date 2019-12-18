@@ -33,7 +33,7 @@ const Viewer: React.FunctionComponent<ViewerProps> = ({ photoIndex }) => {
   const photo = photos[photoIndex];
   const url = `${URL}/${FILE_PATH}/${photo.hash}_mobile`;
   const isBackwardActive = photoIndex > 0;
-  const isForwardActive = photoIndex < photos.length;
+  const isForwardActive = photoIndex < photos.length - 1;
 
   return (
     <div
