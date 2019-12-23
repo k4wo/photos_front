@@ -2,6 +2,8 @@ import { configure } from "@storybook/react";
 import { addParameters } from "@storybook/react"; // <- or your storybook framework
 
 import '../src/variables.css'
+import '../src/index.css'
+import './style.css'
 
 addParameters({
   backgrounds: [
