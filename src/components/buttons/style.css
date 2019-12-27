@@ -1,7 +1,7 @@
 .btn {
   border: none;
   outline: none;
-  padding: 10px;
+  padding: 10px 20px;
   cursor: pointer;
   transition: 0.5s;
   font-size: 16px;
@@ -17,6 +17,15 @@
 
 .btn:hover {
   background: var(--lightgray);
+}
+
+/* PRIMARY */
+.btn--primary {
+  background: var(--blue);
+}
+
+.btn.btn--primary:hover {
+  background: rgba(255, 255, 255, 255, 0.5);
 }
 
 /* BUTTON ICON */

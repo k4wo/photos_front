@@ -16,11 +16,12 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
-    font-size: 16px;
+  outline: none;
+  font-size: 16px;
 }
 
 a {
+  color: var(--darkgray);
   text-decoration: none;
 }
 
