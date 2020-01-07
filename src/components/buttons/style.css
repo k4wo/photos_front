@@ -22,15 +22,37 @@
 /* PRIMARY */
 .btn--primary {
   background: var(--blue);
+  color: #fff;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--darkblue);
 }
 
 .btn--primary:disabled {
   background: var(--gray);
   color: var(--darkgray);
+  cursor: default;
 }
 
 .btn.btn--primary:hover {
   background: rgba(255, 255, 255, 255, 0.5);
+}
+.btn.btn--primary .roller {
+  height: 13px;
+}
+
+.btn--primary .loader {
+  width: 0;
+  visibility: hidden;
+  transition: 0.4s;
+}
+.btn--primary .loader--visible {
+  visibility: visible;
+  width: 10px;
+  margin-left: 5px;
 }
 
 /* BUTTON ICON */
