@@ -1,11 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ThunkAction } from "redux-thunk";
-import { AnyAction } from "redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { ReduxState, UploadReducer, ViewerReducer } from "./types/redux";
-import { uploadFile } from "./redux/actions";
+import { uploadFile, DefaultThunkAction } from "./redux/actions";
 
 import Mainbar from "./components/headers/Mainbar";
 import Navbar from "./components/headers/Navbar";
@@ -26,9 +24,7 @@ const App: React.FunctionComponent = () => {
   return (
     <Router>
       <Mainbar
-        onFileSelect={(files: FileList): ThunkAction<void, ReduxState, null, AnyAction> =>
-          dispatch(uploadFile(files))
-        }
+        onFileSelect={(files: FileList): DefaultThunkAction => dispatch(uploadFile(files))}
       />
       <Navbar />
 

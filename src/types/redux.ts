@@ -1,5 +1,7 @@
 import { Photo } from "./interfaces";
 
+import { PENDINGS } from "../constants/enums";
+
 // ACTIONS
 export interface BasicReduxAction {
   type: string;
@@ -26,7 +28,7 @@ export interface UploadReducer {
   isCompleted: boolean;
   name: string;
 }
-
+export type PendingReducer = PENDINGS | null;
 export type ViewerReducer = number | null;
 
 // STATES
@@ -44,6 +46,7 @@ export interface ReduxState {
   photos: PhotosState;
   upload: UploadState;
   viewer: ViewerReducer;
+  pending: PendingReducer;
 }
 
 export default ReduxState;

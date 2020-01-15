@@ -3,3 +3,7 @@ export enum size {
   medium = "medium",
   big = "big"
 }
+
+export enum PENDINGS {
+  createAlbum
+}

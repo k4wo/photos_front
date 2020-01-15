@@ -6,7 +6,8 @@ export default [
   "SET_FILES_STATE",
   "CLEAR_UPLOAD_FILES",
 
-  "SET_VIEWER"
+  "SET_VIEWER",
+  "SET_PENDING"
 ].reduce(
   (types: Record<string, string>, type: string): Record<string, string> => ({
     ...types,

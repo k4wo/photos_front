@@ -1,6 +1,7 @@
 import { ThunkDispatch, ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
+import { PENDINGS } from "../constants/enums";
 import { Photo } from "../types/interfaces";
 import {
   BasicReduxAction,
@@ -103,3 +104,16 @@ export const setViewer = (
 
 export const closeViewer = (dispatch: DefaultDispatchAction): ViewerAction =>
   dispatch(setViewerAction(null));
+
+// PENDINGS
+const setPendingAction = (pending: PENDINGS | null): BasicReduxAction => ({
+  type: types.SET_PENDINGS,
+  payload: pending
+});
+
+export const setPending = (pending: PENDINGS): DefaultThunkAction => (
+  dispatch: DefaultDispatchAction
+): BasicReduxAction => dispatch(setPendingAction(pending));
+export const clearPending = (): DefaultThunkAction => (
+  dispatch: DefaultDispatchAction
+): BasicReduxAction => dispatch(setPendingAction(null));
