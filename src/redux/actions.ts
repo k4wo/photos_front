@@ -18,6 +18,9 @@ interface SetPhotoActionType extends BasicReduxAction {
   payload: Photo[];
 }
 
+export type DefaultThunkAction = ThunkAction<void, ReduxState, null, AnyAction>;
+type DefaultDispatchAction = ThunkDispatch<ReduxState, {}, AnyAction>;
+
 export const setPhotosPending = (): BasicReduxAction => ({
   type: types.FETCH_PHOTOS
 });
@@ -29,9 +32,7 @@ export const setPhotos = (photos: Photo[]): SetPhotoActionType => ({
   type: types.FETCH_PHOTOS_SUCCESS,
   payload: photos
 });
-export const fetchPhotos = async (
-  dispatch: ThunkDispatch<ReduxState, {}, AnyAction>
-): Promise<void> => {
+export const fetchPhotos = async (dispatch: DefaultDispatchAction): Promise<void> => {
   dispatch(setPhotosPending());
 
   try {
@@ -52,10 +53,8 @@ export const setUploadFiles = (files: UploadReducer[]): UploadFileAction => {
   };
 };
 
-export const uploadFile = (
-  files: FileList
-): ThunkAction<void, ReduxState, null, AnyAction> => async (
-  dispatch: ThunkDispatch<ReduxState, {}, AnyAction>
+export const uploadFile = (files: FileList): DefaultThunkAction => async (
+  dispatch: DefaultDispatchAction
 ): Promise<void> => {
   const filesName = Array.prototype.map.call(files, (file: File): string => file.name) as string[];
   const storeFiles = filesName.map(
@@ -99,8 +98,8 @@ const setViewerAction = (index: number | null): ViewerAction => ({
 export const setViewer = (
   photoIndex: number
 ): ThunkAction<void, ReduxState, null, ViewerAction> => (
-  dispatch: ThunkDispatch<ReduxState, {}, AnyAction>
+  dispatch: DefaultDispatchAction
 ): ViewerAction => dispatch(setViewerAction(photoIndex));
 
-export const closeViewer = (dispatch: ThunkDispatch<ReduxState, {}, AnyAction>): ViewerAction =>
+export const closeViewer = (dispatch: DefaultDispatchAction): ViewerAction =>
   dispatch(setViewerAction(null));
