@@ -6,6 +6,7 @@ import { faUpload as uploadIcon } from "@fortawesome/free-solid-svg-icons/faUplo
 
 import Search from "../Inputs/Search";
 import Button from "../buttons/Button";
+import CreateAlbum from "../modals/CreateAlbum";
 
 import "./styles.css";
 
@@ -18,10 +19,10 @@ interface MainbarProps {
   onFileSelect: (files: FileList) => void;
 }
 
-const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }: MainbarProps) => {
+const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }) => {
   const inputFile = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
-  const [isCreateModalActive, setIsCreateModalActive] = useState(false);
+  const [isCreateAlbumActive, setIsCreateAlbumActive] = useState(false);
 
   return (
     <div className="mainbar">
@@ -33,7 +34,7 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }: Mainba
         value={search}
       />
       <span className="mainbar__buttons">
-        <Button handleClick={(): void => setIsCreateModalActive(false)}>
+        <Button handleClick={(): void => setIsCreateAlbumActive(true)}>
           <FontAwesomeIcon icon={createIcon} />
           {LABELS.create}
         </Button>
@@ -41,19 +42,21 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }: Mainba
           <FontAwesomeIcon icon={uploadIcon} />
           {LABELS.upload}
           <input
-            ref={inputFile}
-            className="mainbar__input-file"
-            type="file"
             accept="image/png, image/jpeg"
+            className="mainbar__input-file"
+            multiple
             onChange={(e: ChangeEvent<HTMLInputElement>): void => {
               if (e.target.files) {
                 onFileSelect(e.target.files);
               }
             }}
-            multiple
+            ref={inputFile}
+            type="file"
           />
         </Button>
       </span>
+
+      {isCreateAlbumActive && <CreateAlbum onClose={(): void => setIsCreateAlbumActive(false)} />}
     </div>
   );
 };

@@ -2,14 +2,15 @@ import { ThunkDispatch, ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
 import { PENDINGS } from "../constants/enums";
-import { Photo } from "../types/interfaces";
+import { Photo, Album } from "../types/interfaces";
 import {
   BasicReduxAction,
   ErrorActionType,
   ReduxState,
   UploadFileAction,
   UploadReducer,
-  ViewerAction
+  ViewerAction,
+  AlbumAction
 } from "../types/redux";
 import types from "./types";
 
@@ -107,13 +108,32 @@ export const closeViewer = (dispatch: DefaultDispatchAction): ViewerAction =>
 
 // PENDINGS
 const setPendingAction = (pending: PENDINGS | null): BasicReduxAction => ({
-  type: types.SET_PENDINGS,
+  type: types.SET_PENDING,
   payload: pending
 });
+export const clearPending = (): BasicReduxAction => setPendingAction(null);
 
-export const setPending = (pending: PENDINGS): DefaultThunkAction => (
+// ALBUMS
+const addAlbumsAction = (albums: Album[]): AlbumAction => ({
+  type: types.ADD_ALBUMS,
+  payload: albums
+});
+export const createAlbum = (name: string): DefaultThunkAction => async (
   dispatch: DefaultDispatchAction
-): BasicReduxAction => dispatch(setPendingAction(pending));
-export const clearPending = (): DefaultThunkAction => (
-  dispatch: DefaultDispatchAction
-): BasicReduxAction => dispatch(setPendingAction(null));
+): Promise<void> => {
+  dispatch(setPendingAction(PENDINGS.createAlbum));
+
+  try {
+    const response = await fetch(`${URL}/albums`, {
+      method: "POST",
+      body: JSON.stringify({ name })
+    });
+    const album: Album = await response.json();
+
+    dispatch(addAlbumsAction([album]));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    dispatch(clearPending());
+  }
+};

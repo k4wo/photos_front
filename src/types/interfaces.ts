@@ -18,3 +18,13 @@ export interface Photo {
   size: number;
   owner: number;
 }
+
+export interface Album {
+  id: number;
+  name: string;
+  size: number;
+  owner: number;
+  cover?: string;
+  updatedAt: string;
+  createdAt: string;
+}

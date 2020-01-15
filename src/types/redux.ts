@@ -1,5 +1,4 @@
-import { Photo } from "./interfaces";
-
+import { Photo, Album } from "./interfaces";
 import { PENDINGS } from "../constants/enums";
 
 // ACTIONS
@@ -15,6 +14,9 @@ export interface UploadFileAction extends BasicReduxAction {
 }
 export interface ViewerAction extends BasicReduxAction {
   payload: ViewerReducer;
+}
+export interface AlbumAction extends BasicReduxAction {
+  payload: Album[];
 }
 
 // REDUCERS
@@ -42,7 +44,7 @@ export interface UploadState {
 }
 
 export interface ReduxState {
-  albums: BasicReducer;
+  albums: Album[];
   photos: PhotosState;
   upload: UploadState;
   viewer: ViewerReducer;

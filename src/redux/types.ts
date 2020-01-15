@@ -3,6 +3,8 @@ export default [
   "FETCH_PHOTOS_SUCCESS",
   "FETCH_PHOTOS_ERROR",
 
+  "ADD_ALBUMS",
+
   "SET_FILES_STATE",
   "CLEAR_UPLOAD_FILES",
 
