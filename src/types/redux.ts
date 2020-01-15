@@ -4,10 +4,8 @@ import { PENDINGS } from "../constants/enums";
 // ACTIONS
 export interface BasicReduxAction {
   type: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any;
-}
-export interface ErrorActionType extends BasicReduxAction {
-  payload: string;
 }
 export interface UploadFileAction extends BasicReduxAction {
   payload: UploadReducer[];
@@ -17,6 +15,9 @@ export interface ViewerAction extends BasicReduxAction {
 }
 export interface AlbumAction extends BasicReduxAction {
   payload: Album[];
+}
+export interface PhotoAction extends BasicReduxAction {
+  payload: Photo[];
 }
 
 // REDUCERS
@@ -33,20 +34,10 @@ export interface UploadReducer {
 export type PendingReducer = PENDINGS | null;
 export type ViewerReducer = number | null;
 
-// STATES
-export interface PhotosState {
-  isPending: boolean;
-  error: null | string;
-  data: Photo[];
-}
-export interface UploadState {
-  data: UploadReducer[];
-}
-
 export interface ReduxState {
   albums: Album[];
-  photos: PhotosState;
-  upload: UploadState;
+  photos: Photo[];
+  upload: UploadReducer[];
   viewer: ViewerReducer;
   pending: PendingReducer;
 }

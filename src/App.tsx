@@ -14,7 +14,7 @@ import Photos from "./photos";
 
 const App: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const upload = useSelector((state: ReduxState): UploadReducer[] => state.upload.data);
+  const upload = useSelector((state: ReduxState): UploadReducer[] => state.upload);
   const openPhoto = useSelector((state: ReduxState): ViewerReducer => state.viewer);
 
   if (openPhoto !== null) {

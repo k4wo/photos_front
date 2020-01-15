@@ -1,6 +1,5 @@
 import React, { KeyboardEvent, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ThunkAction } from "redux-thunk";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight as ArrowRightIcon } from "@fortawesome/free-solid-svg-icons/faAngleRight";
 import { faAngleLeft as ArrowLeftIcon } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
@@ -8,19 +7,18 @@ import { faAngleLeft as ArrowLeftIcon } from "@fortawesome/free-solid-svg-icons/
 import "./viewer.css";
 import onEscapePress from "../helpers/onKeyPress";
 
-import ReduxState, { ViewerAction } from "../types/redux";
-import { setViewer, closeViewer } from "../redux/actions";
+import ReduxState from "../types/redux";
+import { setViewer, closeViewer, DefaultThunkAction } from "../redux/actions";
 
 interface ViewerProps {
   photoIndex: number;
 }
-type SetViewerType = ThunkAction<void, ReduxState, null, ViewerAction>;
 
 const URL = process.env.REACT_APP_API_URL;
 const FILE_PATH = process.env.REACT_APP_FILE_PATH;
 
 const Viewer: React.FunctionComponent<ViewerProps> = ({ photoIndex }) => {
-  const photos = useSelector((state: ReduxState) => state.photos.data);
+  const photos = useSelector((state: ReduxState) => state.photos);
   const dispatch = useDispatch();
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +40,7 @@ const Viewer: React.FunctionComponent<ViewerProps> = ({ photoIndex }) => {
       {isBackwardActive && (
         <div
           className="previous"
-          onClick={(): SetViewerType => dispatch(setViewer(photoIndex - 1))}
+          onClick={(): DefaultThunkAction => dispatch(setViewer(photoIndex - 1))}
         >
           <div className="arrow arrow_left">
             <FontAwesomeIcon icon={ArrowLeftIcon} size="2x" />
@@ -50,7 +48,10 @@ const Viewer: React.FunctionComponent<ViewerProps> = ({ photoIndex }) => {
         </div>
       )}
       {isForwardActive && (
-        <div className="next" onClick={(): SetViewerType => dispatch(setViewer(photoIndex + 1))}>
+        <div
+          className="next"
+          onClick={(): DefaultThunkAction => dispatch(setViewer(photoIndex + 1))}
+        >
           <div className="arrow arrow_right">
             <FontAwesomeIcon icon={ArrowRightIcon} size="2x" />
           </div>

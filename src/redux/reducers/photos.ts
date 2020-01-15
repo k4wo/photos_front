@@ -1,27 +1,13 @@
 import { Reducer } from "redux";
 
 import types from "../types";
-import { PhotosState, BasicReduxAction } from "../../types/redux";
+import { BasicReduxAction } from "../../types/redux";
+import { Photo } from "../../types/interfaces";
 
-const initialValues = {
-  isPending: false,
-  error: null,
-  data: []
-};
-
-const photos: Reducer<PhotosState, BasicReduxAction> = (
-  state: PhotosState = initialValues,
-  action: BasicReduxAction
-): PhotosState => {
+const photos: Reducer<Photo[], BasicReduxAction> = (state = [], action): Photo[] => {
   switch (action.type) {
-    case types.FETCH_PHOTOS:
-      return { ...state, isPending: true };
-
-    case types.FETCH_PHOTOS_SUCCESS:
-      return { error: null, isPending: false, data: action.payload };
-
-    case types.FETCH_PHOTOS_ERROR:
-      return { ...state, isPending: false, error: action.payload };
+    case types.ADD_PHOTOS:
+      return [...state, ...action.payload].sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
     default:
       return state;

@@ -1,19 +1,11 @@
-export default [
-  "FETCH_PHOTOS",
-  "FETCH_PHOTOS_SUCCESS",
-  "FETCH_PHOTOS_ERROR",
+export default {
+  ADD_PHOTOS: "ADD_PHOTOS",
 
-  "ADD_ALBUMS",
+  ADD_ALBUMS: "ADD_ALBUMS",
 
-  "SET_FILES_STATE",
-  "CLEAR_UPLOAD_FILES",
+  SET_FILES_STATE: "SET_FILES_STATE",
+  CLEAR_UPLOAD_FILES: "CLEAR_UPLOAD_FILES",
 
-  "SET_VIEWER",
-  "SET_PENDING"
-].reduce(
-  (types: Record<string, string>, type: string): Record<string, string> => ({
-    ...types,
-    [type]: type
-  }),
-  {}
-);
+  SET_VIEWER: "SET_VIEWER",
+  SET_PENDING: "SET_PENDING"
+};

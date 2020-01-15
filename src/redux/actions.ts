@@ -5,46 +5,44 @@ import { PENDINGS } from "../constants/enums";
 import { Photo, Album } from "../types/interfaces";
 import {
   BasicReduxAction,
-  ErrorActionType,
   ReduxState,
   UploadFileAction,
   UploadReducer,
   ViewerAction,
-  AlbumAction
+  AlbumAction,
+  PhotoAction
 } from "../types/redux";
 import types from "./types";
 
 const URL = process.env.REACT_APP_API_URL;
 
-interface SetPhotoActionType extends BasicReduxAction {
-  payload: Photo[];
-}
-
 export type DefaultThunkAction = ThunkAction<void, ReduxState, null, AnyAction>;
 type DefaultDispatchAction = ThunkDispatch<ReduxState, {}, AnyAction>;
 
-export const setPhotosPending = (): BasicReduxAction => ({
-  type: types.FETCH_PHOTOS
+// PENDINGS
+const setPendingAction = (pending: PENDINGS | null): BasicReduxAction => ({
+  type: types.SET_PENDING,
+  payload: pending
 });
-export const setPhotosError = (error: string): ErrorActionType => ({
-  type: types.FETCH_PHOTOS_ERROR,
-  payload: error
-});
-export const setPhotos = (photos: Photo[]): SetPhotoActionType => ({
-  type: types.FETCH_PHOTOS_SUCCESS,
+export const clearPending = (): BasicReduxAction => setPendingAction(null);
+
+// PHOTOS
+export const setPhotos = (photos: Photo[]): PhotoAction => ({
+  type: types.ADD_PHOTOS,
   payload: photos
 });
 export const fetchPhotos = async (dispatch: DefaultDispatchAction): Promise<void> => {
-  dispatch(setPhotosPending());
+  dispatch(setPendingAction(PENDINGS.fetchPhotos));
 
   try {
     const response = await fetch(`${URL}/images`);
     const photos = await response.json();
 
-    dispatch(setPhotos(photos.sort((a: Photo, b: Photo) => +new Date(b.date) - +new Date(a.date))));
+    dispatch(setPhotos(photos));
   } catch (error) {
     console.log(error);
-    dispatch(setPhotosError(error.message));
+  } finally {
+    dispatch(clearPending());
   }
 };
 
@@ -97,21 +95,12 @@ const setViewerAction = (index: number | null): ViewerAction => ({
   payload: index
 });
 
-export const setViewer = (
-  photoIndex: number
-): ThunkAction<void, ReduxState, null, ViewerAction> => (
+export const setViewer = (photoIndex: number): DefaultThunkAction => (
   dispatch: DefaultDispatchAction
 ): ViewerAction => dispatch(setViewerAction(photoIndex));
 
 export const closeViewer = (dispatch: DefaultDispatchAction): ViewerAction =>
   dispatch(setViewerAction(null));
-
-// PENDINGS
-const setPendingAction = (pending: PENDINGS | null): BasicReduxAction => ({
-  type: types.SET_PENDING,
-  payload: pending
-});
-export const clearPending = (): BasicReduxAction => setPendingAction(null);
 
 // ALBUMS
 const addAlbumsAction = (albums: Album[]): AlbumAction => ({

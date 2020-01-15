@@ -3,10 +3,7 @@ import { Reducer } from "redux";
 import types from "../types";
 import { ViewerReducer, BasicReduxAction } from "../../types/redux";
 
-const viewer: Reducer<ViewerReducer, BasicReduxAction> = (
-  state: ViewerReducer = null,
-  action: BasicReduxAction
-): ViewerReducer => {
+const viewer: Reducer<ViewerReducer, BasicReduxAction> = (state = null, action): ViewerReducer => {
   switch (action.type) {
     case types.SET_VIEWER:
       return action.payload;
