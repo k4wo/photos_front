@@ -1,37 +1,6 @@
-.create_album {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+.album-list {
+  flex-flow: row wrap;
 }
-
-.create_album .empty-album {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  margin: 150px 50px;
-}
-
-.create_album .empty-album .IText {
-  width: calc(100% - 200px);
-  margin-right: 50px;
-}
-
-.create_album .empty-album .IText input {
-  font-size: 26px;
-}
-
-.create_album .btn {
-  height: 42px;
-}
-
-.create_album .add-content {
-  border: 1px solid var(--gray);
-  padding: 20px 40px;
-  width: 400px;
-  margin: auto;
-  border-radius: 5px;
-}
-
-.create_album .add-content svg {
-  margin-right: 20px;
+.album-list > .album {
+  margin: 5px 10px 30px 10px;
 }

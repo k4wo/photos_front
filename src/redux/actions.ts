@@ -126,3 +126,19 @@ export const createAlbum = (name: string): DefaultThunkAction => async (
     dispatch(clearPending());
   }
 };
+export const fetchAlbums = (): DefaultThunkAction => async (
+  dispatch: DefaultDispatchAction
+): Promise<void> => {
+  dispatch(setPendingAction(PENDINGS.fetchAlbums));
+
+  try {
+    const response = await fetch(`${URL}/albums`);
+    const album: Album[] = await response.json();
+
+    dispatch(addAlbumsAction(album));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    dispatch(clearPending());
+  }
+};

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import cn from "classnames";
 import { faEllipsisV as menuIcon } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
 
@@ -9,12 +10,10 @@ import useOutsideClick from "../../helpers/useOutsideClick";
 interface AlbumProps {
   url: string;
   name: string;
+  coverUrl?: string;
 }
 
-const Album: React.FunctionComponent<AlbumProps> = ({
-  url,
-  name
-}: AlbumProps) => {
+const Album: React.FC<AlbumProps> = ({ url, name, coverUrl }) => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
   const albumMenuRef = useRef<HTMLDivElement>(null);
 
@@ -22,18 +21,19 @@ const Album: React.FunctionComponent<AlbumProps> = ({
   useOutsideClick((): void => setIsMenuActive(false), albumMenuRef);
 
   return (
-    <div className="album">
-      <div className="album__cover" style={{ backgroundImage: `url(${url})` }}>
+    <Link to={url} className="album">
+      <div className="album__cover" style={{ backgroundImage: `url(${coverUrl})` }}>
         <div ref={albumMenuRef} className={menuClass}>
-          <ButtonIcon
-            icon={menuIcon}
-            handleClick={(): void => setIsMenuActive(!isMenuActive)}
-          />
+          <ButtonIcon icon={menuIcon} handleClick={(): void => setIsMenuActive(!isMenuActive)} />
         </div>
       </div>
       <div className="album__info">{name}</div>
-    </div>
+    </Link>
   );
+};
+
+Album.defaultProps = {
+  coverUrl: ""
 };
 
 export default Album;

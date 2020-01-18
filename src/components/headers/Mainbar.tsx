@@ -6,7 +6,7 @@ import { faUpload as uploadIcon } from "@fortawesome/free-solid-svg-icons/faUplo
 
 import Search from "../Inputs/Search";
 import Button from "../buttons/Button";
-import CreateAlbum from "../modals/CreateAlbum";
+import CreateAlbum from "../../album/CreateAlbum";
 
 import "./styles.css";
 
