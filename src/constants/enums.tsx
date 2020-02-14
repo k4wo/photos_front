@@ -6,6 +6,7 @@ export enum size {
 
 export enum PENDINGS {
   createAlbum,
-  fetchPhotos,
-  fetchAlbums
+  fetchAlbumContent,
+  fetchAlbums,
+  fetchPhotos
 }

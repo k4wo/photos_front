@@ -9,6 +9,7 @@ import Mainbar from "./components/headers/Mainbar";
 import Navbar from "./components/headers/Navbar";
 import UploadWindow from "./components/uploads/UploadWindow";
 
+import AlbumContent from "./album/AlbumContent";
 import AlbumList from "./album/AlbumList";
 import Viewer from "./viewer";
 import Photos from "./photos";
@@ -36,6 +37,10 @@ const App: React.FunctionComponent = () => {
 
         <Route exact path="/album">
           <AlbumList />
+        </Route>
+
+        <Route exact path="/album/:name">
+          <AlbumContent />
         </Route>
       </Switch>
 

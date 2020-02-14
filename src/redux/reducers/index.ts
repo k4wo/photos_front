@@ -6,11 +6,13 @@ import albums from "./albums";
 import upload from "./upload";
 import viewer from "./viewer";
 import pending from "./pending";
+import albumContent from "./albumContent";
 
 export default combineReducers<ReduxState, any>({
+  albumContent,
   albums,
+  pending,
   photos,
   upload,
-  viewer,
-  pending
+  viewer
 });

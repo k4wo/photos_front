@@ -4,13 +4,14 @@ import { AnyAction } from "redux";
 import { PENDINGS } from "../constants/enums";
 import { Photo, Album } from "../types/interfaces";
 import {
+  AlbumAction,
+  AlbumContentAction,
   BasicReduxAction,
+  PhotoAction,
   ReduxState,
   UploadFileAction,
   UploadReducer,
-  ViewerAction,
-  AlbumAction,
-  PhotoAction
+  ViewerAction
 } from "../types/redux";
 import types from "./types";
 
@@ -136,6 +137,27 @@ export const fetchAlbums = (): DefaultThunkAction => async (
     const album: Album[] = await response.json();
 
     dispatch(addAlbumsAction(album));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    dispatch(clearPending());
+  }
+};
+// ALBUM CONTENT
+const addAlbumContentAction = (albumId: number, photos: Photo[]): AlbumContentAction => ({
+  type: types.ADD_ALBUM_CONTENT,
+  payload: { id: albumId, data: photos }
+});
+export const fetchAlbumContent = (albumId: number): DefaultThunkAction => async (
+  dispatch: DefaultDispatchAction
+): Promise<void> => {
+  dispatch(setPendingAction(PENDINGS.fetchAlbumContent));
+
+  try {
+    const response = await fetch(`${URL}/album/${albumId}`);
+    const photos: Photo[] = await response.json();
+
+    dispatch(addAlbumContentAction(albumId, photos));
   } catch (error) {
     console.log(error);
   } finally {
