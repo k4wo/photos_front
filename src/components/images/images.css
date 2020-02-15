@@ -74,10 +74,13 @@
 .album__menu {
   position: absolute;
   opacity: 0;
-  top: 10px;
-  right: 10px;
+  right: 0;
   transition: 0.5s;
   color: black;
+  z-index: 1;
+}
+.album__menu > .btn-icon {
+  padding: 15px 15px 5px 15px;
 }
 .album__info {
   width: var(--album-width);

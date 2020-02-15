@@ -143,6 +143,14 @@ export const fetchAlbums = (): DefaultThunkAction => async (
     dispatch(clearPending());
   }
 };
+export const deleteAlbum = (albumId: number): DefaultThunkAction => async (): Promise<void> => {
+  try {
+    console.log(albumId);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // ALBUM CONTENT
 const addAlbumContentAction = (albumId: number, photos: Photo[]): AlbumContentAction => ({
   type: types.ADD_ALBUM_CONTENT,

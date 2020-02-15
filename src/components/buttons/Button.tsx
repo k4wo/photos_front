@@ -5,7 +5,7 @@ import "./style.css";
 
 interface ButtonProps {
   children: ReactNode;
-  handleClick: () => void;
+  handleClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   classname?: string;
   disabled?: boolean;
 }

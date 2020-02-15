@@ -24,6 +24,7 @@ const AlbumList: React.FunctionComponent = () => {
       {albums.map(album => (
         <Album
           key={album.id}
+          id={album.id}
           url={`/album/${album.name}`}
           name={album.name}
           coverUrl={`${URL}/${FILE_PATH}/${album.id}_mobile`}
