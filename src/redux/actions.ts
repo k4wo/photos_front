@@ -55,7 +55,7 @@ export const setUploadFiles = (files: UploadReducer[]): UploadFileAction => {
 };
 
 export const uploadFile = (files: FileList): DefaultThunkAction => async (
-  dispatch: DefaultDispatchAction
+  dispatch
 ): Promise<void> => {
   const filesName = Array.prototype.map.call(files, (file: File): string => file.name) as string[];
   const storeFiles = filesName.map(
@@ -96,20 +96,20 @@ const setViewerAction = (index: number | null): ViewerAction => ({
   payload: index
 });
 
-export const setViewer = (photoIndex: number): DefaultThunkAction => (
-  dispatch: DefaultDispatchAction
-): ViewerAction => dispatch(setViewerAction(photoIndex));
+export const setViewer = (photoIndex: number): DefaultThunkAction => (dispatch): ViewerAction =>
+  dispatch(setViewerAction(photoIndex));
 
 export const closeViewer = (dispatch: DefaultDispatchAction): ViewerAction =>
   dispatch(setViewerAction(null));
 
 // ALBUMS
 const addAlbumsAction = (albums: Album[]): AlbumAction => ({
-  type: types.ADD_ALBUMS,
+  type: types.SET_ALBUM,
   payload: albums
 });
 export const createAlbum = (name: string): DefaultThunkAction => async (
-  dispatch: DefaultDispatchAction
+  dispatch,
+  getState
 ): Promise<void> => {
   dispatch(setPendingAction(PENDINGS.createAlbum));
 
@@ -120,32 +120,39 @@ export const createAlbum = (name: string): DefaultThunkAction => async (
     });
     const album: Album = await response.json();
 
-    dispatch(addAlbumsAction([album]));
+    const state = getState();
+    dispatch(addAlbumsAction([...state.albums, album]));
   } catch (error) {
     console.log(error);
   } finally {
     dispatch(clearPending());
   }
 };
-export const fetchAlbums = (): DefaultThunkAction => async (
-  dispatch: DefaultDispatchAction
-): Promise<void> => {
+export const fetchAlbums = (): DefaultThunkAction => async (dispatch): Promise<void> => {
   dispatch(setPendingAction(PENDINGS.fetchAlbums));
 
   try {
     const response = await fetch(`${URL}/albums`);
-    const album: Album[] = await response.json();
+    const albums: Album[] = await response.json();
 
-    dispatch(addAlbumsAction(album));
+    dispatch(addAlbumsAction(albums));
   } catch (error) {
     console.log(error);
   } finally {
     dispatch(clearPending());
   }
 };
-export const deleteAlbum = (albumId: number): DefaultThunkAction => async (): Promise<void> => {
+export const deleteAlbum = (albumId: number): DefaultThunkAction => async (
+  dispatch,
+  getState
+): Promise<void> => {
   try {
-    console.log(albumId);
+    await fetch(`${URL}/album/${albumId}`, {
+      method: "DELETE"
+    });
+
+    const state = getState();
+    dispatch(addAlbumsAction(state.albums.filter(album => album.id !== albumId)));
   } catch (error) {
     console.log(error);
   }
@@ -157,7 +164,7 @@ const addAlbumContentAction = (albumId: number, photos: Photo[]): AlbumContentAc
   payload: { id: albumId, data: photos }
 });
 export const fetchAlbumContent = (albumId: number): DefaultThunkAction => async (
-  dispatch: DefaultDispatchAction
+  dispatch
 ): Promise<void> => {
   dispatch(setPendingAction(PENDINGS.fetchAlbumContent));
 

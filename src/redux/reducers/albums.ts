@@ -6,8 +6,8 @@ import { Album } from "../../types/interfaces";
 
 const albums: Reducer<Album[], AlbumAction> = (state = [], action): Album[] => {
   switch (action.type) {
-    case types.ADD_ALBUMS:
-      return [...state, ...action.payload].sort(
+    case types.SET_ALBUM:
+      return action.payload.sort(
         (a, b) => new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate()
       );
 
