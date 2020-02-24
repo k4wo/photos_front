@@ -30,6 +30,7 @@
 
 .mainbar__buttons .btn {
   color: var(--blue);
+  background: transparent;
 }
 
 .navbar {
