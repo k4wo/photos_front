@@ -1,5 +1,14 @@
+import { ThunkAction } from "redux-thunk";
+import { AnyAction } from "redux";
+
 import { Photo, Album, AlbumContentPayload } from "./interfaces";
 import { PENDINGS } from "../constants/enums";
+
+export type DefaultThunkAction = ThunkAction<void, ReduxState, null, AnyAction>;
+export type PendingReducer = PENDINGS | null;
+export type ViewerReducer = number | null;
+export type AlbumContentReducer = Record<number, Photo[]>;
+export type SelectionReducer = Record<number, number>;
 
 // ACTIONS
 export interface BasicReduxAction {
@@ -22,6 +31,9 @@ export interface PhotoAction extends BasicReduxAction {
 export interface AlbumContentAction extends BasicReduxAction {
   payload: AlbumContentPayload;
 }
+export interface SelectionAction extends BasicReduxAction {
+  payload: SelectionReducer;
+}
 
 // REDUCERS
 export interface BasicReducer {
@@ -34,9 +46,6 @@ export interface UploadReducer {
   isCompleted: boolean;
   name: string;
 }
-export type PendingReducer = PENDINGS | null;
-export type ViewerReducer = number | null;
-export type AlbumContentReducer = Record<number, Photo[]>;
 
 export interface ReduxState {
   albums: Album[];
@@ -45,6 +54,7 @@ export interface ReduxState {
   viewer: ViewerReducer;
   pending: PendingReducer;
   albumContent: AlbumContentReducer;
+  selection: SelectionReducer;
 }
 
 export default ReduxState;

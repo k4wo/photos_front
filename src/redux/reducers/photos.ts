@@ -7,7 +7,7 @@ import { Photo } from "../../types/interfaces";
 const photos: Reducer<Photo[], BasicReduxAction> = (state = [], action): Photo[] => {
   switch (action.type) {
     case types.ADD_PHOTOS:
-      return [...state, ...action.payload].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+      return [...action.payload];
 
     default:
       return state;

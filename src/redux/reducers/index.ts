@@ -7,6 +7,7 @@ import upload from "./upload";
 import viewer from "./viewer";
 import pending from "./pending";
 import albumContent from "./albumContent";
+import selection from "./selection";
 
 export default combineReducers<ReduxState, any>({
   albumContent,
@@ -14,5 +15,6 @@ export default combineReducers<ReduxState, any>({
   pending,
   photos,
   upload,
-  viewer
+  viewer,
+  selection
 });

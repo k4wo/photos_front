@@ -8,5 +8,6 @@ export enum PENDINGS {
   createAlbum,
   fetchAlbumContent,
   fetchAlbums,
-  fetchPhotos
+  fetchPhotos,
+  deleteFiles
 }

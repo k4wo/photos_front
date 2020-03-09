@@ -12,21 +12,28 @@ const LABELS = {
   albums: "albums"
 };
 
-const Navbar: React.FunctionComponent = () => {
+interface NavbarProps {
+  isSelectionActive: boolean;
+}
+
+const Navbar: React.FunctionComponent<NavbarProps> = ({ isSelectionActive }) => {
   const { pathname } = useLocation();
-  const isActive = (path: string): string =>
-    pathname === path ? "navbar__link--active" : "";
+  const isActive = (path: string): string => (pathname === path ? "navbar__link--active" : "");
 
   return (
     <div className="navbar">
-      <a className={cn("navbar__link", isActive("/"))} href="/">
-        <FontAwesomeIcon icon={imageIcon} size="lg" />
-        <div className="navbar__text">{LABELS.images}</div>
-      </a>
-      <a className={cn("navbar__link", isActive("/album"))} href="/album">
-        <FontAwesomeIcon icon={albumIcon} size="lg" />
-        <div className="navbar__text">{LABELS.albums}</div>
-      </a>
+      {!isSelectionActive && (
+        <>
+          <a className={cn("navbar__link", isActive("/"))} href="/">
+            <FontAwesomeIcon icon={imageIcon} size="lg" />
+            <div className="navbar__text">{LABELS.images}</div>
+          </a>
+          <a className={cn("navbar__link", isActive("/album"))} href="/album">
+            <FontAwesomeIcon icon={albumIcon} size="lg" />
+            <div className="navbar__text">{LABELS.albums}</div>
+          </a>
+        </>
+      )}
     </div>
   );
 };

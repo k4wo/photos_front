@@ -21,11 +21,11 @@ export type DefaultThunkAction = ThunkAction<void, ReduxState, null, AnyAction>;
 type DefaultDispatchAction = ThunkDispatch<ReduxState, {}, AnyAction>;
 
 // PENDINGS
-const setPendingAction = (pending: PENDINGS | null): BasicReduxAction => ({
+export const setPending = (pending: PENDINGS | null): BasicReduxAction => ({
   type: types.SET_PENDING,
   payload: pending
 });
-export const clearPending = (): BasicReduxAction => setPendingAction(null);
+export const clearPending = (): BasicReduxAction => setPending(null);
 
 // PHOTOS
 export const setPhotos = (photos: Photo[]): PhotoAction => ({
@@ -33,13 +33,13 @@ export const setPhotos = (photos: Photo[]): PhotoAction => ({
   payload: photos
 });
 export const fetchPhotos = async (dispatch: DefaultDispatchAction): Promise<void> => {
-  dispatch(setPendingAction(PENDINGS.fetchPhotos));
+  dispatch(setPending(PENDINGS.fetchPhotos));
 
   try {
     const response = await fetch(`${URL}/images`);
-    const photos = await response.json();
+    const photos: Photo[] = await response.json();
 
-    dispatch(setPhotos(photos));
+    dispatch(setPhotos(photos.sort((a, b) => +new Date(b.date) - +new Date(a.date))));
   } catch (error) {
     console.log(error);
   } finally {
@@ -111,7 +111,7 @@ export const createAlbum = (name: string): DefaultThunkAction => async (
   dispatch,
   getState
 ): Promise<void> => {
-  dispatch(setPendingAction(PENDINGS.createAlbum));
+  dispatch(setPending(PENDINGS.createAlbum));
 
   try {
     const response = await fetch(`${URL}/albums`, {
@@ -129,7 +129,7 @@ export const createAlbum = (name: string): DefaultThunkAction => async (
   }
 };
 export const fetchAlbums = (): DefaultThunkAction => async (dispatch): Promise<void> => {
-  dispatch(setPendingAction(PENDINGS.fetchAlbums));
+  dispatch(setPending(PENDINGS.fetchAlbums));
 
   try {
     const response = await fetch(`${URL}/albums`);
@@ -159,20 +159,20 @@ export const deleteAlbum = (albumId: number): DefaultThunkAction => async (
 };
 
 // ALBUM CONTENT
-const addAlbumContentAction = (albumId: number, photos: Photo[]): AlbumContentAction => ({
+export const setAlbumContent = (albumId: number, photos: Photo[]): AlbumContentAction => ({
   type: types.ADD_ALBUM_CONTENT,
   payload: { id: albumId, data: photos }
 });
 export const fetchAlbumContent = (albumId: number): DefaultThunkAction => async (
   dispatch
 ): Promise<void> => {
-  dispatch(setPendingAction(PENDINGS.fetchAlbumContent));
+  dispatch(setPending(PENDINGS.fetchAlbumContent));
 
   try {
     const response = await fetch(`${URL}/album/${albumId}`);
     const photos: Photo[] = await response.json();
 
-    dispatch(addAlbumContentAction(albumId, photos));
+    dispatch(setAlbumContent(albumId, photos));
   } catch (error) {
     console.log(error);
   } finally {

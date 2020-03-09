@@ -1,4 +1,5 @@
 export interface Photo {
+  id: number;
   date: Date;
   width: number;
   height: number;
