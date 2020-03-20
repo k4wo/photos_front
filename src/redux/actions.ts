@@ -159,9 +159,9 @@ export const deleteAlbum = (albumId: number): DefaultThunkAction => async (
 };
 
 // ALBUM CONTENT
-export const setAlbumContent = (albumId: number, photos: Photo[]): AlbumContentAction => ({
+export const setAlbumContent = (photos: Photo[]): AlbumContentAction => ({
   type: types.ADD_ALBUM_CONTENT,
-  payload: { id: albumId, data: photos }
+  payload: photos
 });
 export const fetchAlbumContent = (albumId: number): DefaultThunkAction => async (
   dispatch
@@ -172,7 +172,7 @@ export const fetchAlbumContent = (albumId: number): DefaultThunkAction => async 
     const response = await fetch(`${URL}/album/${albumId}`);
     const photos: Photo[] = await response.json();
 
-    dispatch(setAlbumContent(albumId, photos));
+    dispatch(setAlbumContent(photos));
   } catch (error) {
     console.log(error);
   } finally {

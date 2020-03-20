@@ -29,8 +29,7 @@ const AlbumContent: React.FunctionComponent<AlbumContentProps> = ({
   const album = useSelector<ReduxState, IAlbum | undefined>(state =>
     state.albums.find(album => album.name === name)
   );
-  const photos =
-    useSelector<ReduxState, Photo[]>(state => (album ? state.albumContent[album.id] : [])) || [];
+  const photos = useSelector<ReduxState, Photo[]>(state => state.albumContent) || [];
 
   useEffect(() => {
     if (album && !photos.length) {

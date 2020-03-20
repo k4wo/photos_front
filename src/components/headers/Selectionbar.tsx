@@ -1,13 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { faTimes as closeIcon } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { faTrashAlt as removeIcon } from "@fortawesome/free-solid-svg-icons/faTrashAlt";
 
 import "./styles.css";
 import { clearSelection, deleteFiles } from "../../redux/actions/selection";
-import ReduxState, { BasicReduxAction, DefaultThunkAction } from "../../types/redux";
-import { Album as IAlbum } from "../../types/interfaces";
+import { BasicReduxAction, DefaultThunkAction } from "../../types/redux";
 
 import ButtonIcon from "../buttons/ButtonIcon";
 
@@ -23,15 +21,6 @@ const LABEL = {
 
 const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const albums = useSelector<ReduxState, IAlbum[]>(state => state.albums);
-  let album: IAlbum | undefined;
-
-  if (location?.pathname.includes("album")) {
-    const path = location?.pathname.split("/");
-    const name = path[path.length - 1].trim();
-    album = albums.find(album => album.name === name);
-  }
 
   return (
     <div className="mainbar">
@@ -45,7 +34,7 @@ const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => 
       </span>
       <ButtonIcon
         icon={removeIcon}
-        handleClick={(): DefaultThunkAction => dispatch(deleteFiles(album?.id))}
+        handleClick={(): DefaultThunkAction => dispatch(deleteFiles())}
         size="2x"
       />
     </div>

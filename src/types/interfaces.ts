@@ -29,8 +29,3 @@ export interface Album {
   updatedAt: string;
   createdAt: string;
 }
-
-export interface AlbumContentPayload {
-  id: number;
-  data: Photo[];
-}

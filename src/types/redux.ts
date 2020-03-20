@@ -1,13 +1,13 @@
 import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
-import { Photo, Album, AlbumContentPayload } from "./interfaces";
+import { Photo, Album } from "./interfaces";
 import { PENDINGS } from "../constants/enums";
 
 export type DefaultThunkAction = ThunkAction<void, ReduxState, null, AnyAction>;
 export type PendingReducer = PENDINGS | null;
 export type ViewerReducer = number | null;
-export type AlbumContentReducer = Record<number, Photo[]>;
+export type AlbumContentReducer = Photo[];
 export type SelectionReducer = Record<number, number>;
 
 // ACTIONS
@@ -29,7 +29,7 @@ export interface PhotoAction extends BasicReduxAction {
   payload: Photo[];
 }
 export interface AlbumContentAction extends BasicReduxAction {
-  payload: AlbumContentPayload;
+  payload: Photo[];
 }
 export interface SelectionAction extends BasicReduxAction {
   payload: SelectionReducer;

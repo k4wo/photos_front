@@ -31,13 +31,9 @@ export const toggleSelection = (fileId: number): DefaultThunkAction => (
 
 export const clearSelection = (): SelectionAction => setSelection({});
 
-export const deleteFiles = (albumId?: number): DefaultThunkAction => async (
-  dispatch,
-  getState
-): Promise<void> => {
+export const deleteFiles = (): DefaultThunkAction => async (dispatch, getState): Promise<void> => {
   const { photos, selection, albumContent } = getState();
   const toRemove = Object.values(selection);
-  const album = albumId ? albumContent[albumId] : null;
 
   setPending(PENDINGS.deleteFiles);
   try {
@@ -47,13 +43,8 @@ export const deleteFiles = (albumId?: number): DefaultThunkAction => async (
     });
     dispatch(setPhotos(photos.filter(file => !toRemove.includes(file.id))));
 
-    if (albumId && album) {
-      dispatch(
-        setAlbumContent(
-          albumId,
-          album.filter(file => !toRemove.includes(file.id))
-        )
-      );
+    if (albumContent.length) {
+      dispatch(setAlbumContent(albumContent.filter(file => !toRemove.includes(file.id))));
     }
 
     dispatch(clearSelection());
