@@ -1,5 +1,5 @@
 import types from "../types";
-import { setPhotos, setAlbumContent, setPending, clearPending } from "../actions";
+import { setPhotos, setPending, clearPending } from "../actions";
 import { SelectionAction, SelectionReducer, DefaultThunkAction } from "../../types/redux";
 import { PENDINGS } from "../../constants/enums";
 
@@ -32,7 +32,7 @@ export const toggleSelection = (fileId: number): DefaultThunkAction => (
 export const clearSelection = (): SelectionAction => setSelection({});
 
 export const deleteFiles = (): DefaultThunkAction => async (dispatch, getState): Promise<void> => {
-  const { photos, selection, albumContent } = getState();
+  const { photos, selection } = getState();
   const toRemove = Object.values(selection);
 
   setPending(PENDINGS.deleteFiles);
@@ -42,10 +42,6 @@ export const deleteFiles = (): DefaultThunkAction => async (dispatch, getState):
       body: JSON.stringify({ id: toRemove })
     });
     dispatch(setPhotos(photos.filter(file => !toRemove.includes(file.id))));
-
-    if (albumContent.length) {
-      dispatch(setAlbumContent(albumContent.filter(file => !toRemove.includes(file.id))));
-    }
 
     dispatch(clearSelection());
   } catch (error) {

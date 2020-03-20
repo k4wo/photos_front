@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Album as IAlbum, Photo } from "../types/interfaces";
-import { fetchAlbumContent, DefaultThunkAction, setViewer } from "../redux/actions";
+import { fetchAlbumContent, DefaultThunkAction } from "../redux/actions";
 import { ReduxState, SelectionReducer } from "../types/redux";
 import { toggleSelection } from "../redux/actions/selection";
 
@@ -29,7 +29,7 @@ const AlbumContent: React.FunctionComponent<AlbumContentProps> = ({
   const album = useSelector<ReduxState, IAlbum | undefined>(state =>
     state.albums.find(album => album.name === name)
   );
-  const photos = useSelector<ReduxState, Photo[]>(state => state.albumContent) || [];
+  const photos = useSelector<ReduxState, Photo[]>(state => state.photos) || [];
 
   useEffect(() => {
     if (album && !photos.length) {
@@ -44,13 +44,15 @@ const AlbumContent: React.FunctionComponent<AlbumContentProps> = ({
 
   return (
     <div id="main-content" className="photos">
-      {photos.map((photo, index) => (
+      {photos.map(photo => (
         <Image
           key={photo.hash}
           url={`${URL}/${FILE_PATH}/${photo.hash}_mobile`}
           onSelect={(): DefaultThunkAction => dispatch(toggleSelection(photo.id))}
           handleClick={(): void | DefaultThunkAction =>
-            isSelectionActive ? dispatch(toggleSelection(photo.id)) : dispatch(setViewer(index))
+            isSelectionActive
+              ? dispatch(toggleSelection(photo.id))
+              : history.push(`/a/${name}/${photo.id}`)
           }
           width={photo.width}
           height={photo.height}

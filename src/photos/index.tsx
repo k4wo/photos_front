@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import { fetchPhotos, setViewer } from "../redux/actions";
+import { fetchPhotos } from "../redux/actions";
 import { Photo as PhotoInterface } from "../types/interfaces";
 import { ReduxState, DefaultThunkAction, SelectionReducer } from "../types/redux";
 import { toggleSelection } from "../redux/actions/selection";
@@ -20,6 +21,7 @@ interface PhotosProps {
 const Photos: React.FunctionComponent<PhotosProps> = ({ selectedPhotos, isSelectionActive }) => {
   const dispatch = useDispatch();
   const photos = useSelector<ReduxState, PhotoInterface[]>(state => state.photos);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchPhotos);
@@ -27,13 +29,13 @@ const Photos: React.FunctionComponent<PhotosProps> = ({ selectedPhotos, isSelect
 
   return (
     <div id="main-content" className="photos">
-      {photos.map((photo, index) => (
+      {photos.map(photo => (
         <Image
           key={photo.hash}
           url={`${URL}/${FILE_PATH}/${photo.hash}_mobile`}
           onSelect={(): DefaultThunkAction => dispatch(toggleSelection(photo.id))}
           handleClick={(): void | DefaultThunkAction =>
-            isSelectionActive ? dispatch(toggleSelection(photo.id)) : dispatch(setViewer(index))
+            isSelectionActive ? dispatch(toggleSelection(photo.id)) : history.push(`/p/${photo.id}`)
           }
           width={photo.width}
           height={photo.height}

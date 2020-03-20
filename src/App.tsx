@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { ReduxState, UploadReducer, ViewerReducer, SelectionReducer } from "./types/redux";
+import { ReduxState, UploadReducer, SelectionReducer } from "./types/redux";
 import { uploadFile, DefaultThunkAction } from "./redux/actions";
 
 import Selectionbar from "./components/headers/Selectionbar";
@@ -15,20 +15,17 @@ import AlbumList from "./album/AlbumList";
 import Viewer from "./viewer";
 import Photos from "./photos";
 
-const App: React.FunctionComponent = () => {
+interface WSProps {
+  selectionCount: number;
+  children: ReactNode;
+}
+
+const WithSidebar: React.FunctionComponent<WSProps> = ({ selectionCount, children }) => {
   const dispatch = useDispatch();
-  const upload = useSelector((state: ReduxState): UploadReducer[] => state.upload);
-  const openPhoto = useSelector((state: ReduxState): ViewerReducer => state.viewer);
-  const selectedPhotos = useSelector<ReduxState, SelectionReducer>(state => state.selection);
-  const selectionCount = Object.keys(selectedPhotos).length;
   const isSelectionActive = !!selectionCount;
 
-  if (openPhoto !== null) {
-    return <Viewer photoIndex={openPhoto} />;
-  }
-
   return (
-    <Router>
+    <>
       {!isSelectionActive && (
         <Mainbar
           onFileSelect={(files: FileList): DefaultThunkAction => dispatch(uploadFile(files))}
@@ -37,19 +34,40 @@ const App: React.FunctionComponent = () => {
       {isSelectionActive && <Selectionbar count={selectionCount} />}
       <Navbar isSelectionActive={isSelectionActive} />
 
-      <Switch>
-        <Route exact path="/">
+      {children}
+    </>
+  );
+};
+
+const App: React.FunctionComponent = () => {
+  const upload = useSelector((state: ReduxState): UploadReducer[] => state.upload);
+  const selectedPhotos = useSelector<ReduxState, SelectionReducer>(state => state.selection);
+  const selectionCount = Object.keys(selectedPhotos).length;
+  const isSelectionActive = !!selectionCount;
+
+  return (
+    <Router>
+      <Route exact path="/">
+        <WithSidebar selectionCount={selectionCount}>
           <Photos selectedPhotos={selectedPhotos} isSelectionActive={isSelectionActive} />
-        </Route>
+        </WithSidebar>
+      </Route>
 
-        <Route exact path="/album">
+      <Route exact path="/album">
+        <WithSidebar selectionCount={selectionCount}>
           <AlbumList />
-        </Route>
+        </WithSidebar>
+      </Route>
 
-        <Route exact path="/album/:name">
+      <Route exact path="/album/:name">
+        <WithSidebar selectionCount={selectionCount}>
           <AlbumContent selectedPhotos={selectedPhotos} isSelectionActive={isSelectionActive} />
-        </Route>
-      </Switch>
+        </WithSidebar>
+      </Route>
+
+      <Route exact path={["/p/:photoId", "/a/:album/:photoId"]}>
+        <Viewer />
+      </Route>
 
       {!!upload.length && <UploadWindow files={upload} />}
     </Router>

@@ -6,7 +6,6 @@ import { PENDINGS } from "../constants/enums";
 
 export type DefaultThunkAction = ThunkAction<void, ReduxState, null, AnyAction>;
 export type PendingReducer = PENDINGS | null;
-export type ViewerReducer = number | null;
 export type AlbumContentReducer = Photo[];
 export type SelectionReducer = Record<number, number>;
 
@@ -19,16 +18,10 @@ export interface BasicReduxAction {
 export interface UploadFileAction extends BasicReduxAction {
   payload: UploadReducer[];
 }
-export interface ViewerAction extends BasicReduxAction {
-  payload: ViewerReducer;
-}
 export interface AlbumAction extends BasicReduxAction {
   payload: Album[];
 }
 export interface PhotoAction extends BasicReduxAction {
-  payload: Photo[];
-}
-export interface AlbumContentAction extends BasicReduxAction {
   payload: Photo[];
 }
 export interface SelectionAction extends BasicReduxAction {
@@ -51,9 +44,7 @@ export interface ReduxState {
   albums: Album[];
   photos: Photo[];
   upload: UploadReducer[];
-  viewer: ViewerReducer;
   pending: PendingReducer;
-  albumContent: AlbumContentReducer;
   selection: SelectionReducer;
 }
 
