@@ -14,9 +14,10 @@ interface Props {
 
 const ButtonIconDropdown: React.FC<Props> = ({ icon, size, children }) => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
+  const [menuDirection, setMenuDirection] = useState<string>("");
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const menuClass = cn("btn__menu", isMenuActive && "btn__menu--active");
+  const menuClass = cn("btn__menu", isMenuActive && "btn__menu--active", menuDirection);
   useOutsideClick((): void => setIsMenuActive(false), menuRef);
 
   return (
@@ -26,6 +27,10 @@ const ButtonIconDropdown: React.FC<Props> = ({ icon, size, children }) => {
         size={size}
         handleClick={(e): void => {
           e.preventDefault();
+          const { innerWidth } = window;
+          const positionX = menuRef?.current?.getBoundingClientRect()?.x || 0;
+
+          setMenuDirection(innerWidth / 2 > positionX ? "dropdown--right" : "dropdown--left");
           setIsMenuActive(!isMenuActive);
         }}
       />

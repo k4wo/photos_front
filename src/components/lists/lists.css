@@ -26,6 +26,12 @@
 .dropdown > *:hover {
   background-color: var(--lightgray);
 }
+.dropdown--left .dropdown {
+  right: 10px;
+}
+.dropdown--right .dropdown {
+  left: 10px;
+}
 
 @keyframes slidein {
   from {

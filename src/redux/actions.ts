@@ -159,3 +159,25 @@ export const deleteAlbum = (albumId: number): DefaultThunkAction => async (
     console.log(error);
   }
 };
+export const setAlbumCover = (fileId: number, albumName: string): DefaultThunkAction => async (
+  dispatch,
+  getState
+): Promise<void> => {
+  try {
+    const state = getState();
+    const album = state.albums.find(a => a.name === albumName);
+    const albumId = album?.id;
+    const resp = await fetch(`${URL}/album/${albumId}/cover`, {
+      method: "PUT",
+      body: JSON.stringify({ fileId })
+    });
+    const cover = await resp.json();
+
+    const albums = state.albums.map((album: Album) =>
+      album.id === albumId ? { ...album, cover } : album
+    );
+    dispatch(addAlbumsAction(albums));
+  } catch (error) {
+    console.log(error);
+  }
+};

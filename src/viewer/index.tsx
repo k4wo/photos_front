@@ -7,8 +7,8 @@ import { useParams, useHistory } from "react-router-dom";
 
 import "./viewer.css";
 import onEscapePress from "../helpers/onKeyPress";
-
 import ReduxState from "../types/redux";
+import Topbar from "./Topbar";
 
 const URL = process.env.REACT_APP_API_URL;
 const FILE_PATH = process.env.REACT_APP_FILE_PATH;
@@ -26,8 +26,8 @@ const Viewer: React.FunctionComponent = () => {
 
   useEffect(() => boxRef.current?.focus());
 
-  const photoId = parseInt(params.photoId, 10);
-  const photoIndex = photos.findIndex(photo => photo.id === photoId);
+  const fileId = parseInt(params.photoId, 10);
+  const photoIndex = photos.findIndex(photo => photo.id === fileId);
   const photo = photos[photoIndex];
   if (!photo) {
     history.replace("/404");
@@ -37,15 +37,16 @@ const Viewer: React.FunctionComponent = () => {
   const url = `${URL}/${FILE_PATH}/${photo.hash}_mobile`;
   const isBackwardActive = photoIndex > 0;
   const isForwardActive = photoIndex < photos.length - 1;
-  const goBackUrl = params.album ? `/album/${params.album}` : "/";
+  const goBack = (): void => history.push(params.album ? `/album/${params.album}` : "/");
 
   return (
     <div
       ref={boxRef}
       tabIndex={0}
       className="viewer"
-      onKeyDown={(e: KeyboardEvent): void => onEscapePress(e, () => history.push(goBackUrl))}
+      onKeyDown={(e: KeyboardEvent): void => onEscapePress(e, goBack)}
     >
+      <Topbar goBack={goBack} fileId={fileId} album={params.album} />
       <div className="photo" style={{ backgroundImage: `url(${url})` }} />
       {isBackwardActive && (
         <div
