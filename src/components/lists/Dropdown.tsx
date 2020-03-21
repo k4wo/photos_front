@@ -1,9 +1,23 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import "./lists.css";
 
-const Dropdown: React.FunctionComponent = ({ children }) => (
-  <div className="dropdown">{children}</div>
+interface Props {
+  handleClick: () => void;
+  children: ReactNode;
+}
+
+const Dropdown: React.FunctionComponent<Props> = ({ children, handleClick }) => (
+  <div
+    className="dropdown"
+    onClick={(e): void => {
+      e.stopPropagation();
+      e.preventDefault();
+      handleClick();
+    }}
+  >
+    {children}
+  </div>
 );
 
 export default Dropdown;
