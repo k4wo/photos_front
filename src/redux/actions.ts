@@ -53,7 +53,7 @@ export const fetchAlbumContent = (albumId: number): DefaultThunkAction => async 
     const response = await fetch(`${URL}/album/${albumId}`);
     const photos: Photo[] = await response.json();
 
-    dispatch(setPhotos(photos));
+    dispatch(setPhotos(photos || []));
   } catch (error) {
     console.log(error);
   } finally {
