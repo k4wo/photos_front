@@ -1,4 +1,3 @@
-import { faEllipsisV as menuIcon } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import React from "react";
@@ -26,7 +25,7 @@ const Album: React.FC<AlbumProps> = ({ id, url, name, coverUrl }) => {
   return (
     <Link to={url} className="album">
       <div className="album__cover" style={{ backgroundImage: `url(${coverUrl})` }}>
-        <ButtonIconDropdown icon={menuIcon}>
+        <ButtonIconDropdown icon="ellipsis-v">
           <Button
             handleClick={(): void => {
               dispatch(deleteAlbum(id));

@@ -1,8 +1,5 @@
 import React, { ChangeEvent, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars as menuIcon } from "@fortawesome/free-solid-svg-icons/faBars";
-import { faPlus as createIcon } from "@fortawesome/free-solid-svg-icons/faPlus";
-import { faUpload as uploadIcon } from "@fortawesome/free-solid-svg-icons/faUpload";
 
 import Search from "../Inputs/Search";
 import Button from "../buttons/Button";
@@ -27,7 +24,7 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }) => {
   return (
     <div className="mainbar">
       <div className="mainbar__menu">
-        <FontAwesomeIcon icon={menuIcon} size="lg" />
+        <FontAwesomeIcon icon="bars" size="lg" />
       </div>
       <Search
         onSearch={(e: ChangeEvent<HTMLInputElement>): void => setSearch(e.target.value)}
@@ -35,11 +32,11 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }) => {
       />
       <span className="mainbar__buttons">
         <Button handleClick={(): void => setIsCreateAlbumActive(true)}>
-          <FontAwesomeIcon icon={createIcon} />
+          <FontAwesomeIcon icon="plus" />
           {LABELS.create}
         </Button>
         <Button handleClick={(): void => inputFile.current?.click()}>
-          <FontAwesomeIcon icon={uploadIcon} />
+          <FontAwesomeIcon icon="upload" />
           {LABELS.upload}
           <input
             accept="image/png, image/jpeg"

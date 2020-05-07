@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { faTimes as closeIcon } from "@fortawesome/free-solid-svg-icons/faTimes";
 
 import Modal from "./Modal";
 
@@ -36,7 +35,7 @@ const LoadingModal: React.FC<Props> = ({ title, onClose, children, fetchData, cl
     <Modal onClose={onClose} className={className}>
       <div className="action-modal__title">
         <span>{title}</span>
-        <ButtonIcon icon={closeIcon} handleClick={onClose} size="2x" />
+        <ButtonIcon icon="times" handleClick={onClose} size="2x" />
       </div>
       {data === null && <Linear />}
       {children(data)}

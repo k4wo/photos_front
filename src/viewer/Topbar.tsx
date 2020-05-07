@@ -1,5 +1,3 @@
-import { faArrowLeft as goBackIcon } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
-import { faEllipsisV as menuIcon } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
 import { useDispatch } from "react-redux";
 import React from "react";
 
@@ -24,11 +22,11 @@ const Topbar: React.FC<Props> = ({ fileId, goBack, album }) => {
   return (
     <div className="topbar">
       <div>
-        <ButtonIcon icon={goBackIcon} handleClick={goBack} size="2x" />
+        <ButtonIcon icon="arrow-left" handleClick={goBack} size="2x" />
       </div>
       <div>
         {album && (
-          <ButtonIconDropdown icon={menuIcon}>
+          <ButtonIconDropdown icon="ellipsis-v">
             <Button
               handleClick={(): void => {
                 dispatch(setAlbumCover(fileId, album));

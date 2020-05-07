@@ -2,8 +2,6 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import cn from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage as imageIcon } from "@fortawesome/free-solid-svg-icons/faImage";
-import { faTh as albumIcon } from "@fortawesome/free-solid-svg-icons/faTh";
 
 import "./styles.css";
 
@@ -25,11 +23,11 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({ isSelectionActive }) => 
       {!isSelectionActive && (
         <>
           <a className={cn("navbar__link", isActive("/"))} href="/">
-            <FontAwesomeIcon icon={imageIcon} size="lg" />
+            <FontAwesomeIcon icon="image" size="lg" />
             <div className="navbar__text">{LABELS.images}</div>
           </a>
           <a className={cn("navbar__link", isActive("/album"))} href="/album">
-            <FontAwesomeIcon icon={albumIcon} size="lg" />
+            <FontAwesomeIcon icon="th" size="lg" />
             <div className="navbar__text">{LABELS.albums}</div>
           </a>
         </>

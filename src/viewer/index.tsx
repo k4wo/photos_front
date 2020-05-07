@@ -1,8 +1,6 @@
 import React, { KeyboardEvent, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight as ArrowRightIcon } from "@fortawesome/free-solid-svg-icons/faAngleRight";
-import { faAngleLeft as ArrowLeftIcon } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { useParams, useHistory } from "react-router-dom";
 
 import "./viewer.css";
@@ -54,14 +52,14 @@ const Viewer: React.FunctionComponent = () => {
           onClick={(): void => history.push(`/p/${photos[photoIndex - 1].id}`)}
         >
           <div className="arrow arrow_left">
-            <FontAwesomeIcon icon={ArrowLeftIcon} size="2x" />
+            <FontAwesomeIcon icon="angle-left" size="2x" />
           </div>
         </div>
       )}
       {isForwardActive && (
         <div className="next" onClick={(): void => history.push(`/p/${photos[photoIndex + 1].id}`)}>
           <div className="arrow arrow_right">
-            <FontAwesomeIcon icon={ArrowRightIcon} size="2x" />
+            <FontAwesomeIcon icon="angle-right" size="2x" />
           </div>
         </div>
       )}

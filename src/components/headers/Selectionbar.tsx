@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { faTimes as closeIcon } from "@fortawesome/free-solid-svg-icons/faTimes";
-import { faTrashAlt as removeIcon } from "@fortawesome/free-solid-svg-icons/faTrashAlt";
-import { faPlus as addToAlbum } from "@fortawesome/free-solid-svg-icons/faPlus";
 
 import "./styles.css";
 import { clearSelection, deleteFiles } from "../../redux/actions/selection";
@@ -33,7 +30,7 @@ const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => 
   return (
     <div className="mainbar selectionbar">
       <ButtonIcon
-        icon={closeIcon}
+        icon="times"
         handleClick={(): BasicReduxAction => dispatch(clearSelection())}
         size="2x"
       />
@@ -41,13 +38,9 @@ const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => 
         {LABEL.selected} {count} {`${count === 1 ? LABEL.image : LABEL.images}`}
       </span>
       <div className="buttons-actions">
+        <ButtonIcon icon="plus" handleClick={(): void => setIsAddToAlbumEnabled(true)} size="2x" />
         <ButtonIcon
-          icon={addToAlbum}
-          handleClick={(): void => setIsAddToAlbumEnabled(true)}
-          size="2x"
-        />
-        <ButtonIcon
-          icon={removeIcon}
+          icon="trash-alt"
           handleClick={(): DefaultThunkAction => dispatch(deleteFiles())}
           size="2x"
         />
