@@ -35,9 +35,9 @@ const ButtonIconDropdown: React.FC<Props> = ({ icon, size, children }) => {
         }}
       />
 
-      {isMenuActive && (
-        <Dropdown handleClick={(): void => setIsMenuActive(false)}>{children}</Dropdown>
-      )}
+      <Dropdown isActive={isMenuActive} handleClick={(): void => setIsMenuActive(false)}>
+        {children}
+      </Dropdown>
     </div>
   );
 };

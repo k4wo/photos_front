@@ -8,23 +8,35 @@
   box-sizing: border-box;
   display: flex;
   flex-flow: column nowrap;
-  height: auto;
-  padding: 5px 0;
+  height: 0;
+  padding: 0;
   position: absolute;
   transition: 1s;
-  width: 200px;
+  visibility: hidden;
+  width: 0;
 }
 .dropdown > * {
   cursor: pointer;
-  transition: 0.3s;
-  padding: 10px 10px;
-  text-overflow: ellipsis;
-  word-break: break-all;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  word-break: break-all;
+  padding: 0;
+  height: 0;
 }
 .dropdown > *:hover {
   background-color: var(--lightgray);
+}
+.dropdown--active > * {
+  opacity: 1;
+  padding: 10px 10px;
+  height: auto;
+}
+.dropdown--active {
+  height: auto;
+  padding: 5px 0;
+  visibility: visible;
+  width: 200px;
 }
 .dropdown--left .dropdown {
   right: 10px;

@@ -1,15 +1,17 @@
 import React, { ReactNode } from "react";
+import cn from "classnames";
 
 import "./lists.css";
 
 interface Props {
   handleClick: () => void;
   children: ReactNode;
+  isActive: boolean;
 }
 
-const Dropdown: React.FunctionComponent<Props> = ({ children, handleClick }) => (
+const Dropdown: React.FunctionComponent<Props> = ({ children, handleClick, isActive }) => (
   <div
-    className="dropdown"
+    className={cn("dropdown", isActive && "dropdown--active")}
     onClick={(e): void => {
       e.stopPropagation();
       e.preventDefault();

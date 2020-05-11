@@ -36,5 +36,11 @@ export const ButtonDropdown: React.FC = () => (
     >
       {text("ButtonDropdown", "Click!")}
     </ButtonComponent>
+    <ButtonComponent
+      handleClick={(): void => action("ButtonDropdown-Click!")}
+      classname="btn--simple"
+    >
+      {text("ButtonDropdown2", "Click 2!")}
+    </ButtonComponent>
   </ButtonIconDropdown>
 );
