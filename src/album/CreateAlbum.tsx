@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Album } from "../types/interfaces";
-import { createAlbum, DefaultThunkAction } from "../redux/actions";
+import { createAlbum } from "../redux/actions/album";
+import { DefaultThunkAction } from "../redux/actions";
 import { PENDINGS } from "../constants/enums";
 import ReduxState, { PendingReducer } from "../types/redux";
 

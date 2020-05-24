@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import React from "react";
 
-import "./images.css";
-import { deleteAlbum } from "../../redux/actions";
+import "./album.css";
+import { deleteAlbum } from "../redux/actions/album";
 
-import Button from "../buttons/Button";
-import ButtonIconDropdown from "../buttons/ButtonIconDropdown";
+import Button from "../components/buttons/Button";
+import ButtonIconDropdown from "../components/buttons/ButtonIconDropdown";
 
 interface AlbumProps {
   id: number;

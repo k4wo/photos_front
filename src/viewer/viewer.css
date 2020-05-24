@@ -74,7 +74,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 10;
 }
 .viewer .topbar .btn-icon:hover {
   background: rgb(2, 0, 36, 0.1);
+}
+.viewer .topbar .dropdown {
+  box-shadow: 0px 0px 10px black;
+}
+
+.viewer .display-add-to-album {
+  color: black;
 }

@@ -35,29 +35,38 @@ const Viewer: React.FunctionComponent = () => {
   const url = `${URL}/${FILE_PATH}/${photo.hash}_mobile`;
   const isBackwardActive = photoIndex > 0;
   const isForwardActive = photoIndex < photos.length - 1;
-  const goBack = (): void => history.push(params.album ? `/album/${params.album}` : "/");
+  const baseUrl = params.album ? `/a/${params.album}` : "/p";
+  const onClose = (): void => history.push(params.album ? `/album/${params.album}` : "/");
+  const goBackward = (): void => history.push(`${baseUrl}/${photos[photoIndex - 1].id}`);
+  const goForward = (): void => history.push(`${baseUrl}/${photos[photoIndex + 1].id}`);
+  const onRemoveFile = (): void => {
+    if (isForwardActive) {
+      goForward();
+    } else if (isBackwardActive) {
+      goBackward();
+    } else {
+      onClose();
+    }
+  };
 
   return (
     <div
       ref={boxRef}
       tabIndex={0}
       className="viewer"
-      onKeyDown={(e: KeyboardEvent): void => onEscapePress(e, goBack)}
+      onKeyDown={(e: KeyboardEvent): void => onEscapePress(e, onClose)}
     >
-      <Topbar goBack={goBack} fileId={fileId} album={params.album} />
+      <Topbar onClose={onClose} fileId={fileId} album={params.album} onRemoveFile={onRemoveFile} />
       <div className="photo" style={{ backgroundImage: `url(${url})` }} />
       {isBackwardActive && (
-        <div
-          className="previous"
-          onClick={(): void => history.push(`/p/${photos[photoIndex - 1].id}`)}
-        >
+        <div className="previous" onClick={goBackward}>
           <div className="arrow arrow_left">
             <FontAwesomeIcon icon="angle-left" size="2x" />
           </div>
         </div>
       )}
       {isForwardActive && (
-        <div className="next" onClick={(): void => history.push(`/p/${photos[photoIndex + 1].id}`)}>
+        <div className="next" onClick={goForward}>
           <div className="arrow arrow_right">
             <FontAwesomeIcon icon="angle-right" size="2x" />
           </div>

@@ -59,7 +59,7 @@ const App: React.FunctionComponent = () => {
         </WithSidebar>
       </Route>
 
-      <Route exact path="/album/:name">
+      <Route exact path="/album/:albumId">
         <WithSidebar selectionCount={selectionCount}>
           <AlbumContent selectedPhotos={selectedPhotos} isSelectionActive={isSelectionActive} />
         </WithSidebar>

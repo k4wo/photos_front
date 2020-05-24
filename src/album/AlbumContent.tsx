@@ -24,10 +24,11 @@ const AlbumContent: React.FunctionComponent<AlbumContentProps> = ({
   isSelectionActive
 }) => {
   const dispatch = useDispatch();
-  const { name } = useParams();
+  const { albumId: id = "" } = useParams();
   const history = useHistory();
+  const albumId = parseInt(id, 10);
   const album = useSelector<ReduxState, IAlbum | undefined>(state =>
-    state.albums.find(album => album.name === name)
+    state.albums.find(album => album.id === albumId)
   );
   const photos = useSelector<ReduxState, Photo[]>(state => state.photos) || [];
 
@@ -52,7 +53,7 @@ const AlbumContent: React.FunctionComponent<AlbumContentProps> = ({
           handleClick={(): void | DefaultThunkAction =>
             isSelectionActive
               ? dispatch(toggleSelection(photo.id))
-              : history.push(`/a/${name}/${photo.id}`)
+              : history.push(`/a/${albumId}/${photo.id}`)
           }
           width={photo.width}
           height={photo.height}
