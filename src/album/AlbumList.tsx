@@ -27,7 +27,7 @@ const AlbumList: React.FunctionComponent = () => {
           id={album.id}
           url={`/album/${album.id}`}
           name={album.name}
-          coverUrl={`${URL}/${FILE_PATH}/${album.id}_mobile`}
+          coverUrl={`${URL}/${FILE_PATH}/${album.file?.hash}_mobile`}
         />
       ))}
     </div>

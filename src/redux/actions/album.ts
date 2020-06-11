@@ -93,7 +93,7 @@ export const setAlbumCover = (file: number, albumId: string): DefaultThunkAction
     const id = parseInt(albumId, 10);
 
     const albums = state.albums.map((album: Album) =>
-      album.id === id ? { ...album, cover } : album
+      album.id === id ? { ...album, file: cover } : album
     );
     dispatch(addAlbumsAction(albums));
   } catch (error) {

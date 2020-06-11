@@ -25,7 +25,7 @@ export interface Album {
   name: string;
   size: number;
   owner: number;
-  cover?: string;
+  file?: Photo;
   updatedAt: string;
   createdAt: string;
 }
