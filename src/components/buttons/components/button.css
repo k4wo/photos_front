@@ -1,0 +1,27 @@
+.btn {
+  align-items: center;
+  background: inherit;
+  border-radius: var(--borderRadius);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  outline: none;
+  padding: 7px 20px;
+  transition: 0.5s;
+}
+
+.btn.btn--icon > svg {
+  margin-right: 10px;
+}
+
+.btn.btn--loader .loader {
+  width: 0;
+  visibility: hidden;
+  transition: 0.4s;
+}
+.btn.btn--loader .loader--visible {
+  visibility: visible;
+  width: 10px;
+  margin-left: 5px;
+}

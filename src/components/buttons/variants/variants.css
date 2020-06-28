@@ -1,0 +1,60 @@
+/* PRIMARY */
+.btn.btn--primary {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 500;
+}
+.btn.btn--primary:hover:not(:disabled) {
+  background: var(--darkblue);
+}
+.btn.btn--primary-outline:disabled {
+  border: 1px solid var(--darkgray);
+  color: var(--darkgray);
+  cursor: default;
+}
+.btn.btn--primary:disabled {
+  background: var(--gray);
+  color: var(--darkgray);
+  cursor: default;
+}
+
+/* PRIMARY OUTLINE */
+.btn.btn--primary-outline {
+  background: transparent;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  font-weight: 500;
+}
+.btn.btn--primary-outline:hover:not(:disabled) {
+  background: var(--blue);
+  color: #fff;
+}
+.btn.btn--primary-outline:disabled {
+  border: 1px solid var(--darkgray);
+  color: var(--darkgray);
+  cursor: default;
+}
+
+/* TRANSPARENT */
+.btn.btn--transparent {
+  background: transparent;
+  color: var(--blue);
+  font-weight: 500;
+}
+.btn.btn--transparent:hover:not(:disabled) {
+  background: var(--lightgray);
+}
+.btn.btn--transparent:disabled {
+  color: var(--darkgray);
+  cursor: default;
+}
+
+/* SELECT LIST */
+.btn.btn--select-list {
+  background: transparent;
+  padding: 10px 20px;
+  border-radius: 0;
+}
+.btn.btn--select-list:hover:not(:disabled) {
+  background: var(--lightgray);
+}

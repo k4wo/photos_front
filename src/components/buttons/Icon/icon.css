@@ -1,0 +1,14 @@
+/* BUTTON ICON */
+.btn-icon {
+  display: inline;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 5px;
+  border-radius: var(--borderRadius);
+}
+
+.btn-icon:hover {
+  background-color: var(--lightgray);
+}

@@ -5,9 +5,8 @@ import "./styles.css";
 import { clearSelection, deleteFiles } from "../../redux/actions/selection";
 import { BasicReduxAction, DefaultThunkAction } from "../../types/redux";
 
-import ButtonIcon from "../buttons/ButtonIcon";
+import Buttons from "../buttons";
 import LoadingModal from "../modals/LoadingModal";
-import Button from "../buttons/Button";
 import { addSelectedToAlbum } from "../../redux/actions/album";
 
 interface SelectionbarProps {
@@ -29,7 +28,7 @@ const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => 
 
   return (
     <div className="mainbar selectionbar">
-      <ButtonIcon
+      <Buttons.Icon
         icon="times"
         handleClick={(): BasicReduxAction => dispatch(clearSelection())}
         size="2x"
@@ -38,8 +37,12 @@ const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => 
         {LABEL.selected} {count} {`${count === 1 ? LABEL.image : LABEL.images}`}
       </span>
       <div className="buttons-actions">
-        <ButtonIcon icon="plus" handleClick={(): void => setIsAddToAlbumEnabled(true)} size="2x" />
-        <ButtonIcon
+        <Buttons.Icon
+          icon="plus"
+          handleClick={(): void => setIsAddToAlbumEnabled(true)}
+          size="2x"
+        />
+        <Buttons.Icon
           icon="trash-alt"
           handleClick={(): DefaultThunkAction => dispatch(deleteFiles())}
           size="2x"
@@ -55,12 +58,12 @@ const Selectionbar: React.FunctionComponent<SelectionbarProps> = ({ count }) => 
         >
           {(data): React.ReactNode =>
             data?.map(item => (
-              <Button
+              <Buttons.SelectList
                 handleClick={(): DefaultThunkAction => dispatch(addSelectedToAlbum(item.id))}
                 key={item.id}
               >
                 {item.name}
-              </Button>
+              </Buttons.SelectList>
             ))
           }
         </LoadingModal>

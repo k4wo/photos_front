@@ -4,7 +4,7 @@ import Modal from "./Modal";
 
 import "./modals.css";
 import Linear from "../loaders/Linear";
-import ButtonIcon from "../buttons/ButtonIcon";
+import { ButtonIcon } from "../buttons";
 
 interface Props {
   children: (data: Array<any> | null) => React.ReactNode;

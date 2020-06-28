@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./uploads.css";
 import { UploadReducer } from "../../types/redux";
-import ButtonIcon from "../buttons/ButtonIcon";
+import { ButtonIcon } from "../buttons";
 import Roller from "../loaders/Roller";
 
 const UploadItem: React.FunctionComponent<UploadReducer> = ({

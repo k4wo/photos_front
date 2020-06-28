@@ -27,11 +27,6 @@
   display: flex;
 }
 
-.mainbar__buttons .btn {
-  color: var(--blue);
-  background: transparent;
-}
-
 .navbar {
   width: var(--leftBarWidth);
   background: #fff;

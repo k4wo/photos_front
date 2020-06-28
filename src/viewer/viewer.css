@@ -86,3 +86,7 @@
 .viewer .display-add-to-album {
   color: black;
 }
+
+.viewer .info {
+  display: flex;
+}

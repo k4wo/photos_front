@@ -5,8 +5,8 @@ import React from "react";
 import "./album.css";
 import { deleteAlbum } from "../redux/actions/album";
 
-import Button from "../components/buttons/Button";
-import ButtonIconDropdown from "../components/buttons/ButtonIconDropdown";
+import { PrimaryButton } from "../components/buttons";
+import ButtonIconDropdown from "../components/dropdown/DropdownIcon";
 
 interface AlbumProps {
   id: number;
@@ -26,14 +26,13 @@ const Album: React.FC<AlbumProps> = ({ id, url, name, coverUrl }) => {
     <Link to={url} className="album">
       <div className="album__cover" style={{ backgroundImage: `url(${coverUrl})` }}>
         <ButtonIconDropdown icon="ellipsis-v">
-          <Button
+          <PrimaryButton
             handleClick={(): void => {
               dispatch(deleteAlbum(id));
             }}
-            classname="btn--simple"
           >
             {LABELS.deleteAlbum}
-          </Button>
+          </PrimaryButton>
         </ButtonIconDropdown>
       </div>
       <div className="album__info">{name}</div>

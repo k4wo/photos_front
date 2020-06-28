@@ -6,6 +6,7 @@ import { faCheckCircle } from "@fortawesome/free-solid-svg-icons/faCheckCircle";
 import { faCircle } from "@fortawesome/free-regular-svg-icons/faCircle";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
 import { faImage } from "@fortawesome/free-solid-svg-icons/faImage";
+import { faInfo } from "@fortawesome/free-solid-svg-icons/faInfo";
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { faTh } from "@fortawesome/free-solid-svg-icons/faTh";
@@ -24,6 +25,7 @@ export default [
   faCircle,
   faEllipsisV,
   faImage,
+  faInfo,
   faPlus,
   faSearch,
   faTh,

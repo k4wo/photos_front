@@ -1,6 +1,7 @@
 :root {
   --leftBarWidth: 85px;
   --topBarHeight: 60px;
+  --borderRadius: 3px;
 
   --lightgray: #f7f7f7;
   --gray: #e4e4e4;

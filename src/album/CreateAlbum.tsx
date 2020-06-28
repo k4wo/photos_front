@@ -43,7 +43,9 @@ const CreateAlbum: React.FC<Props> = ({ onClose }) => {
     <ActionModal
       isPending={isPending}
       onClose={(): void => onClose()}
-      onSave={(): DefaultThunkAction => dispatch(createAlbum(albumName))}
+      onSave={
+        albumName.trim() ? (): DefaultThunkAction => dispatch(createAlbum(albumName)) : undefined
+      }
       title={LABELS.createAlbum}
     >
       <InputText

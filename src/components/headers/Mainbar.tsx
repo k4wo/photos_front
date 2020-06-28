@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Search from "../Inputs/Search";
-import Button from "../buttons/Button";
+import { TransparentIconButton } from "../buttons";
 import CreateAlbum from "../../album/CreateAlbum";
 
 import "./styles.css";
@@ -31,12 +31,10 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }) => {
         value={search}
       />
       <span className="mainbar__buttons">
-        <Button handleClick={(): void => setIsCreateAlbumActive(true)}>
-          <FontAwesomeIcon icon="plus" />
+        <TransparentIconButton handleClick={(): void => setIsCreateAlbumActive(true)} icon="plus">
           {LABELS.create}
-        </Button>
-        <Button handleClick={(): void => inputFile.current?.click()}>
-          <FontAwesomeIcon icon="upload" />
+        </TransparentIconButton>
+        <TransparentIconButton handleClick={(): void => inputFile.current?.click()} icon="upload">
           {LABELS.upload}
           <input
             accept="image/png, image/jpeg"
@@ -50,7 +48,7 @@ const Mainbar: React.FunctionComponent<MainbarProps> = ({ onFileSelect }) => {
             ref={inputFile}
             type="file"
           />
-        </Button>
+        </TransparentIconButton>
       </span>
 
       {isCreateAlbumActive && <CreateAlbum onClose={(): void => setIsCreateAlbumActive(false)} />}

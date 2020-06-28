@@ -2,8 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { deleteFileAlbum } from "../../redux/actions/album";
-
-import Button from "../../components/buttons/Button";
+import { SelectListButton } from "../../components/buttons";
 
 interface Props {
   onRemoveFile: () => void;
@@ -18,15 +17,14 @@ const DeleteFileButton: React.FC<Props> = ({ onRemoveFile, fileId }) => {
   const dispatch = useDispatch();
 
   return (
-    <Button
+    <SelectListButton
       handleClick={async (): Promise<void> => {
         await dispatch(deleteFileAlbum(fileId));
         onRemoveFile();
       }}
-      classname="btn--simple"
     >
       {LABELS.delete}
-    </Button>
+    </SelectListButton>
   );
 };
 

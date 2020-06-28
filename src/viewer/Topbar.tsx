@@ -4,9 +4,8 @@ import React, { useState } from "react";
 import { removeFromAlbum } from "../redux/actions/album";
 import { setAlbumCover, addFilesToAlbum } from "../redux/actions/album";
 
-import Button from "../components/buttons/Button";
-import ButtonIcon from "../components/buttons/ButtonIcon";
-import ButtonIconDropdown from "../components/buttons/ButtonIconDropdown";
+import Buttons from "../components/buttons";
+import ButtonIconDropdown from "../components/dropdown/DropdownIcon";
 import DeleteFileButton from "./components/DeleteFileButton";
 import LoadingModal from "../components/modals/LoadingModal";
 
@@ -32,37 +31,35 @@ const Topbar: React.FC<Props> = ({ fileId, onClose, album, onRemoveFile }) => {
   return (
     <div className="topbar">
       <div>
-        <ButtonIcon icon="arrow-left" handleClick={onClose} size="2x" />
+        <Buttons.Icon icon="arrow-left" handleClick={onClose} size="2x" />
       </div>
       <div>
         {album && (
           <ButtonIconDropdown icon="ellipsis-v">
-            <Button
+            <Buttons.SelectList
               handleClick={(): void => {
                 dispatch(setAlbumCover(fileId, album));
               }}
-              classname="btn--simple"
             >
               {LABELS.setAlbumCover}
-            </Button>
+            </Buttons.SelectList>
             <DeleteFileButton fileId={fileId} onRemoveFile={onRemoveFile} />
-            <Button
+            <Buttons.SelectList
               handleClick={async (): Promise<void> => {
                 await dispatch(removeFromAlbum(album, fileId));
                 onRemoveFile();
               }}
-              classname="btn--simple"
             >
               {LABELS.removeFromAlbum}
-            </Button>
+            </Buttons.SelectList>
           </ButtonIconDropdown>
         )}
 
         {!album && (
           <ButtonIconDropdown icon="ellipsis-v">
-            <Button handleClick={(): void => setIsAddToAlbumEnabled(true)} classname="btn--simple">
+            <Buttons.SelectList handleClick={(): void => setIsAddToAlbumEnabled(true)}>
               {LABELS.addToAlbum}
-            </Button>
+            </Buttons.SelectList>
             <DeleteFileButton fileId={fileId} onRemoveFile={onRemoveFile} />
           </ButtonIconDropdown>
         )}
@@ -77,7 +74,7 @@ const Topbar: React.FC<Props> = ({ fileId, onClose, album, onRemoveFile }) => {
         >
           {(data): React.ReactNode =>
             data?.map(item => (
-              <Button
+              <Buttons.SelectList
                 handleClick={(): void => {
                   dispatch(addFilesToAlbum(item.id, [fileId]));
                   setIsAddToAlbumEnabled(false);
@@ -85,7 +82,7 @@ const Topbar: React.FC<Props> = ({ fileId, onClose, album, onRemoveFile }) => {
                 key={item.id}
               >
                 {item.name}
-              </Button>
+              </Buttons.SelectList>
             ))
           }
         </LoadingModal>

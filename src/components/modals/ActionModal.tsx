@@ -1,21 +1,21 @@
 import React, { ReactNode } from "react";
 
 import Modal from "./Modal";
-import * as Buttons from "../buttons/Buttons";
+import Buttons from "../buttons";
 
 import "./modals.css";
 
 interface Props {
   title: string;
-  onSave: () => void;
+  onSave?: () => void;
   onClose: () => void;
   children: ReactNode;
   isPending: boolean;
 }
 
 const LABELS = {
-  close: "close",
-  save: "save"
+  close: "Close",
+  save: "Save"
 };
 
 const ActionModal: React.FC<Props> = ({ title, onSave, onClose, children, isPending }) => {
@@ -24,12 +24,16 @@ const ActionModal: React.FC<Props> = ({ title, onSave, onClose, children, isPend
       <div className="action-modal__title">{title}</div>
       <div className="action-modal__content">{children}</div>
       <div className="action-modal__buttons">
-        <Buttons.Primary handleClick={onClose} disabled={isPending}>
+        <Buttons.PrimaryOutline handleClick={onClose} disabled={isPending}>
           {LABELS.close}
-        </Buttons.Primary>
-        <Buttons.Primary handleClick={onSave} disabled={isPending} isPending={isPending}>
+        </Buttons.PrimaryOutline>
+        <Buttons.PrimaryLoader
+          handleClick={(): void => onSave && onSave()}
+          disabled={isPending || !onSave}
+          isPending={isPending}
+        >
           {LABELS.save}
-        </Buttons.Primary>
+        </Buttons.PrimaryLoader>
       </div>
     </Modal>
   );

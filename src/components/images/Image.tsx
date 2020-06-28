@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 
 import "./images.css";
-import ButtonIcon from "../buttons/ButtonIcon";
+import { ButtonIcon } from "../buttons";
 
 import { computeWidth } from "../../helpers/computeDimension";
 

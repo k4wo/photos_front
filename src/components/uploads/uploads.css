@@ -28,12 +28,6 @@
   align-items: center;
 }
 
-.upload-window .btn-icon {
-  transition: 0.5s;
-  color: white;
-  border-radius: 5px;
-}
-
 .upload-window__body {
   height: var(--uploadWindowHeight);
   width: var(--uploadWindowWidth);

@@ -2,8 +2,8 @@ import { IconProp, SizeProp } from "@fortawesome/fontawesome-svg-core";
 import cn from "classnames";
 import React, { useState, useRef, ReactNode } from "react";
 
-import ButtonIcon from "./ButtonIcon";
-import Dropdown from "../lists/Dropdown";
+import ButtonIcon from "../buttons/Icon/ButtonIcon";
+import Dropdown from "./Dropdown";
 import useOutsideClick from "../../helpers/useOutsideClick";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   size?: SizeProp;
 }
 
-const ButtonIconDropdown: React.FC<Props> = ({ icon, size, children }) => {
+const DropdownIcon: React.FC<Props> = ({ icon, size, children }) => {
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
   const [menuDirection, setMenuDirection] = useState<string>("");
   const menuRef = useRef<HTMLDivElement>(null);
@@ -42,4 +42,4 @@ const ButtonIconDropdown: React.FC<Props> = ({ icon, size, children }) => {
   );
 };
 
-export default ButtonIconDropdown;
+export default DropdownIcon;

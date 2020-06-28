@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import cn from "classnames";
 
-import "./lists.css";
+import "./dropdown.css";
 
 interface Props {
   handleClick: () => void;
