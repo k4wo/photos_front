@@ -12,6 +12,7 @@ import LoadingModal from "../components/modals/LoadingModal";
 interface Props {
   fileId: number;
   onClose: () => void;
+  onInfoClick: () => void;
   onRemoveFile: () => void;
   album?: string;
 }
@@ -23,19 +24,21 @@ const LABELS = {
 };
 
 const URL = process.env.REACT_APP_API_URL;
+const ICON_SIZE = "2x";
 
-const Topbar: React.FC<Props> = ({ fileId, onClose, album, onRemoveFile }) => {
+const Topbar: React.FC<Props> = ({ fileId, onClose, album, onInfoClick, onRemoveFile }) => {
   const [isAddToAlbumEnabled, setIsAddToAlbumEnabled] = useState(false);
   const dispatch = useDispatch();
 
   return (
     <div className="topbar">
       <div>
-        <Buttons.Icon icon="arrow-left" handleClick={onClose} size="2x" />
+        <Buttons.Icon icon="arrow-left" handleClick={onClose} size={ICON_SIZE} />
       </div>
-      <div>
+      <div className="right-icons">
+        <Buttons.Icon icon="info" size={ICON_SIZE} handleClick={onInfoClick} />
         {album && (
-          <ButtonIconDropdown icon="ellipsis-v">
+          <ButtonIconDropdown size={ICON_SIZE} icon="ellipsis-v">
             <Buttons.SelectList
               handleClick={(): void => {
                 dispatch(setAlbumCover(fileId, album));
@@ -56,7 +59,7 @@ const Topbar: React.FC<Props> = ({ fileId, onClose, album, onRemoveFile }) => {
         )}
 
         {!album && (
-          <ButtonIconDropdown icon="ellipsis-v">
+          <ButtonIconDropdown size={ICON_SIZE} icon="ellipsis-v">
             <Buttons.SelectList handleClick={(): void => setIsAddToAlbumEnabled(true)}>
               {LABELS.addToAlbum}
             </Buttons.SelectList>

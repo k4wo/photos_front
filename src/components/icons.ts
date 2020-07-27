@@ -2,6 +2,8 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons/faAngleRight";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons/faCalendarDay";
+import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons/faCheckCircle";
 import { faCircle } from "@fortawesome/free-regular-svg-icons/faCircle";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons/faEllipsisV";
@@ -21,6 +23,8 @@ export default [
   faAngleRight,
   faArrowLeft,
   faBars,
+  faCalendarDay,
+  faCamera,
   faCheckCircle,
   faCircle,
   faEllipsisV,

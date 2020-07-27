@@ -4,10 +4,13 @@
   --borderRadius: 3px;
 
   --lightgray: #f7f7f7;
-  --gray: #e4e4e4;
-  --darkgray: #7b7b7b;
+  --gray: #b6b6b6;
+  --darkgray: #9aa0a6;
+  --dimmergray: #3c4043;
 
   --blue: #1a73e8;
   --lightblue: #e8f0fe;
   --darkblue: rgb(3, 82, 185);
 }
+
+/* light, lighter, color, dark, darker, dim, dimmer */

@@ -1,0 +1,48 @@
+.file-info {
+  color: var(--dimmergray);
+  padding: 15px 10px 15px 21px;
+}
+.file-info svg {
+  color: var(--gray);
+}
+.file-info__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+.file-info__label {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--darkgray);
+  margin-bottom: 30px;
+}
+.file-info__details {
+  display: flex;
+  flex-flow: column;
+  margin-top: 102px;
+}
+.file-info__box {
+  margin-bottom: 30px;
+  display: flex;
+}
+.file-info__icon {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.file-info__text > div:first-child {
+  font-weight: 500;
+  color: var(--dimmergray);
+  margin-bottom: 5px;
+  word-break: break-all;
+}
+.file-info__text > div:last-child {
+  font-size: 14px;
+  color: var(--darkgray);
+}
+.file-info__small-text {
+  margin-right: 10px;
+}
