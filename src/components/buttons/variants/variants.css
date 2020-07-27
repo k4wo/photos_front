@@ -3,6 +3,9 @@
   background: var(--blue);
   color: #fff;
   font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 .btn.btn--primary:hover:not(:disabled) {
   background: var(--darkblue);
@@ -14,7 +17,7 @@
 }
 .btn.btn--primary:disabled {
   background: var(--gray);
-  color: var(--darkgray);
+  color: var(--lightgray);
   cursor: default;
 }
 
@@ -54,6 +57,7 @@
   background: transparent;
   padding: 10px 20px;
   border-radius: 0;
+  color: var(--dimmergray);
 }
 .btn.btn--select-list:hover:not(:disabled) {
   background: var(--lightgray);

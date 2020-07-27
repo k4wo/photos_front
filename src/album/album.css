@@ -6,7 +6,7 @@
 .album__cover {
   width: var(--album-width);
   height: 200px;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--brightgray);
   border-radius: 10px;
   position: relative;
   background-repeat: no-repeat;
@@ -50,4 +50,9 @@
 }
 .album-list > .album {
   margin: 5px 10px 30px 10px;
+}
+
+/* CREATE ALBUM MODAL */
+.create-album {
+  margin: 50px 5px;
 }

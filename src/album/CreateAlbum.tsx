@@ -41,19 +41,20 @@ const CreateAlbum: React.FC<Props> = ({ onClose }) => {
 
   return (
     <ActionModal
-      isPending={isPending}
-      onClose={(): void => onClose()}
-      onSave={
-        albumName.trim() ? (): DefaultThunkAction => dispatch(createAlbum(albumName)) : undefined
-      }
+      onClose={onClose}
+      onSave={(): DefaultThunkAction => dispatch(createAlbum(albumName))}
       title={LABELS.createAlbum}
+      isPending={isPending}
+      isDisabled={!albumName.trim()}
     >
-      <InputText
-        autofocus
-        onType={(e: ChangeEvent<HTMLInputElement>): void => setAlbumName(e.target.value)}
-        placeholder={LABELS.typeAlbumName}
-        value={albumName}
-      />
+      <div className="create-album">
+        <InputText
+          autofocus
+          onType={(e: ChangeEvent<HTMLInputElement>): void => setAlbumName(e.target.value)}
+          placeholder={LABELS.typeAlbumName}
+          value={albumName}
+        />
+      </div>
     </ActionModal>
   );
 };

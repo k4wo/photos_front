@@ -2,11 +2,11 @@
   display: flex;
   width: 100%;
   min-width: 160px;
-  background: var(--gray);
+  background: var(--lightgray);
   border-radius: 5px;
   padding: 5px 0;
   box-sizing: border-box;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--lightgray);
   transition: 1s;
 }
 
@@ -33,7 +33,6 @@
 }
 /* https://codepen.io/chrisoncode/pen/IdGKH */
 .IText input {
-  padding: 10px 20px;
   width: 100%;
   box-sizing: border-box;
   display: block;
@@ -51,6 +50,7 @@
 
   /* animation solely on background-size */
   transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  font-size: 16px;
 }
 
 .IText input:focus {

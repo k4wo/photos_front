@@ -33,9 +33,9 @@ const LoadingModal: React.FC<Props> = ({ title, onClose, children, fetchData, cl
 
   return (
     <Modal onClose={onClose} className={className}>
-      <div className="action-modal__title">
+      <div className="loading-modal__title">
         <span>{title}</span>
-        <ButtonIcon icon="times" handleClick={onClose} size="2x" />
+        <div className="action-modal__close"><ButtonIcon icon="times" handleClick={onClose} /></div>
       </div>
       {data === null && <Linear />}
       {children(data)}

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 
 import { onEscapePress } from "../../helpers/onKeyPress";
 
@@ -11,6 +11,13 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({ children, onClose, className }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+    return (): void => {
+      document.body.style.overflow = ""
+    }
+  }, [])
+  
   return (
     <div
       className={`modal ${className}`}
@@ -18,12 +25,13 @@ const Modal: React.FC<Props> = ({ children, onClose, className }) => {
       onKeyUp={(e): void => onEscapePress(e, onClose)}
       onClick={onClose}
     >
+      <div className="modal__background"></div>
       <div className="modal__window" onClick={(e): void => e.stopPropagation()}>
         {children}
       </div>
     </div>
   );
-};
+}
 
 Modal.defaultProps = {
   className: ""

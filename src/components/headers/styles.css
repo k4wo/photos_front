@@ -49,10 +49,13 @@
   border-radius: 5px;
   margin: 10px 0;
   transition: 0.2s;
+  color: var(--dimmergray);
 }
 
 .navbar__text {
   font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 .navbar__link:hover {

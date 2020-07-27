@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 
 import Modal from "./Modal";
 import Buttons from "../buttons";
@@ -6,11 +6,12 @@ import Buttons from "../buttons";
 import "./modals.css";
 
 interface Props {
-  title: string;
-  onSave?: () => void;
-  onClose: () => void;
   children: ReactNode;
+  isDisabled?: boolean;
   isPending: boolean;
+  onClose: () => void;
+  onSave: () => void;
+  title: string;
 }
 
 const LABELS = {
@@ -18,18 +19,34 @@ const LABELS = {
   save: "Save"
 };
 
-const ActionModal: React.FC<Props> = ({ title, onSave, onClose, children, isPending }) => {
+const ActionModal: React.FC<Props> = ({
+  children,
+  isDisabled,
+  isPending,
+  onClose,
+  onSave,
+  title,
+}) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return (): void => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
     <Modal onClose={onClose}>
-      <div className="action-modal__title">{title}</div>
+      <div className="action-modal__title">
+        {title}
+        <div className="action-modal__close">
+          <Buttons.Icon icon="times" handleClick={onClose} />
+        </div>
+      </div>
       <div className="action-modal__content">{children}</div>
       <div className="action-modal__buttons">
-        <Buttons.PrimaryOutline handleClick={onClose} disabled={isPending}>
-          {LABELS.close}
-        </Buttons.PrimaryOutline>
         <Buttons.PrimaryLoader
-          handleClick={(): void => onSave && onSave()}
-          disabled={isPending || !onSave}
+          handleClick={(): void => onSave()}
+          disabled={isPending || isDisabled}
           isPending={isPending}
         >
           {LABELS.save}

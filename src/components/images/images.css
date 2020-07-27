@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--gray);
+  background-color: var(--lightgray);
   height: 200px;
   min-width: 20px;
   position: relative;
